@@ -34,3 +34,4 @@ vignettes/*.pdf
 
 # Added by RStudio
 .Rproj.user
+.Ruserdata

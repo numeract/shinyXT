@@ -1,2 +1,3 @@
 # shinyXT
-eXtensible Table framework for R/shiny
+
+eXtensible Table framework for R/Shiny
