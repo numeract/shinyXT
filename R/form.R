@@ -173,7 +173,6 @@ validateForm <- function(input_lst, .context) {
     }, error = function(e) {
         msg <<- e$message
         row_df <<- na_row_df
-        logging('error', 'SYSTEM', 'ui_validate', msg)
     })
     
     list(row_df = row_df, msg = msg)

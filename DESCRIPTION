@@ -21,7 +21,6 @@ Imports:
     dplyr,
     DT,
     magrittr,
-    Nmisc,
     purrr,
     rlang,
     shiny,
