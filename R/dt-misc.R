@@ -1,48 +1,34 @@
+#' js scripts to be used with DT calls
+#' 
 #' @export
-checkConfig <- function(df, tc, if_error = stop, ...) {
+jsDT <- function(script_name = c('4col')) {
     
-    # if_error is a function that accepts an message
-    # e.g. cat, message, warning, stop
-    # arguments in ... will be passed to if_error()
+    script_name <- match.arg(script_name)
     
-    col_names <- colnames(df)
-    tc_names <- names(tc)
-    
-    if (!all(col_names %in% tc_names)) {
-        idx <- which(!(col_names %in% tc_names))
-        if (length(idx) > 0L) {
-            msg <- paste(col_names[idx], collapse = ', ')
-            msg <- paste("No Table Config field for:", msg)
-        }
-        if_error(msg, ...)
-        
-        # if we do not stop, return FALSE
-        FALSE
-    } else {
-        TRUE
+    js <- if (script_name == '4col') {
+        .XT$jsdt_4col
     }
+    
+    # min js by removing extra spaces?
+    js
 }
 
 
 #' @export
-getConfigField <- function(df, tc, field) {
+formatDT <- function(dt, xt) {
     
-    col_names <- colnames(df)
-    # return values from tc in the order of the df columns
-    unname(unlist(purrr::map(tc[col_names], field)))
-}
-
-
-#' @export
-formatDT <- function(dt, tc) {
+    # extract format functions
+    .options <- xt[['.options']]
+    format_Date <- qval(.options[['format_Date']], format_utc)
+    format_POSIXct <- qval(.options[['format_POSIXct']], format_utc)
     
-    # assumed called after dtCheck(), usually from dt_create(), 
+    # assumed called after checkDataConfig(), usually from createDT(), 
     col_names <- colnames(dt$x$data)
-    tc <- tc[col_names]
+    xt <- xt[col_names]
     
     # .? (rounding)
     for (i in 0:6) {
-        round_cols <- names(purrr::keep(tc, ~ .$format == paste0('.', i)))
+        round_cols <- names(purrr::keep(xt, ~ .$format == paste0('.', i)))
         if (length(round_cols) > 0L) {
             dt <- DT::formatRound(dt, round_cols, digits = i)
         }
@@ -50,20 +36,26 @@ formatDT <- function(dt, tc) {
     
     # %? (percent)
     for (i in 0:6) {
-        pct_cols <- names(purrr::keep(tc, ~ .$format == paste0('%', i)))
+        pct_cols <- names(purrr::keep(xt, ~ .$format == paste0('%', i)))
         if (length(pct_cols) > 0L) {
             dt <- DT::formatPercentage(dt, pct_cols, digits = i)
         }
     }
     
-    # date/POSIXct
-    dttm_cols <- names(purrr::keep(tc, ~ .$format %in% c('date', 'dttm')))
+    # Date
+    date_cols <- names(purrr::keep(xt, ~ .$format == 'date'))
+    for (cn in date_cols) {
+        dt$x$data[[cn]] <- format_Date(dt$x$data[[cn]])
+    }
+    
+    # Date/POSIXct
+    dttm_cols <- names(purrr::keep(xt, ~ .$format == 'dttm'))
     for (cn in dttm_cols) {
-        dt$x$data[[cn]] <- format_utc(dt$x$data[[cn]])
+        dt$x$data[[cn]] <- format_POSIXct(dt$x$data[[cn]])
     }
     
     # url
-    url_cols <- names(purrr::keep(tc, ~ .$format == 'url'))
+    url_cols <- names(purrr::keep(xt, ~ .$format == 'url'))
     for (cn in url_cols) {
         txt1 <- dt$x$data[[cn]]
         txt2 <- dplyr::if_else(
@@ -74,7 +66,7 @@ formatDT <- function(dt, tc) {
     }
     
     # email
-    email_cols <- names(purrr::keep(tc, ~ .$format == 'email'))
+    email_cols <- names(purrr::keep(xt, ~ .$format == 'email'))
     for (cn in email_cols) {
         txt1 <- dt$x$data[[cn]]
         txt2 <- paste0('mailto:', txt1)
@@ -87,7 +79,7 @@ formatDT <- function(dt, tc) {
     column_defs <- dt$x$options$columnDefs
     column_def <- list()
     # convert R/L/C to className
-    align <- unname(purrr::map_chr(tc,  ~ .$align %||% ''))
+    align <- unname(purrr::map_chr(xt,  ~ .$align %||% ''))
     l_align <- which(align == 'L') - 1L
     if (length(l_align) > 0L) {
         column_def <- c(column_def, list(
@@ -115,30 +107,34 @@ formatDT <- function(dt, tc) {
 createDT <- function(.context) {
     
     # extract from .context
-    tbl <- tc_get_subset(.context)
-    tc <- tc_get_mode(.context)
-    tc_dt <- tc[['.dt']]
-    df <- qval(tc_dt$pre_dt, tbl)
-    checkConfig(df, tc)
+    tbl <- getFilteredTbl(.context)
+    xt <- getConfigMode(.context)
+    .options <- xt[['.options']]
+    
+    # pre_dt callback
+    df <- qval(.options$pre_dt, tbl)
+    checkDataConfig(df, xt)
     
     col_names <- colnames(df)
-    # drop .xx fields, use col order
-    tc <- tc[col_names]
+    # drop dot fields, use col order
+    xt0 <- xt
+    xt <- xt[col_names]
     
-    # hidden columns, check first tc_dt$visible
-    if (!is.null(tc_dt$visible)) {
-        visible <- col_names %in% tc_dt$visible
+    # hidden columns, check first .options$visible
+    if (!is.null(.options$visible)) {
+        visible_msk <- col_names %in% .options$visible
     } else {
-        visible <- getConfigField(df, tc, 'visible')
+        visible_msk <- getConfigField(df, xt, 'visible')
     }
-    hidden_idx <- which(!visible) - 1L
+    # js col idx starts at 0
+    hidden_idx <- which(!visible_msk) - 1L
     column_defs <- list(list(visible = FALSE, targets = hidden_idx))
     
     options_lst <- list(
         lengthChange = TRUE,
         lengthMenu = c(5, 10, 15, 20, 25, 50, 100),
         paging = TRUE,
-        pageLength = tc_dt$pageLength %||% 10,
+        pageLength = .options$pageLength %||% 10,
         searching = TRUE,
         scrollX = TRUE,
         dom = 'Blfrtip', 
@@ -147,25 +143,26 @@ createDT <- function(.context) {
     )
     extensions <- character()
     
-    if (!is.null(tc_dt$buttons)) {
-        options_lst$buttons <- DT::JS(tc_dt$buttons)
+    if (!is.null(.options$buttons)) {
+        options_lst$buttons <- DT::JS(.options$buttons)
         extensions <- c(extensions, 'Buttons')
     }
     
-    # do not escape url columns
-    skip_escape_idx <- which(purrr::map_lgl(tc, ~ (.$format %||% '') == 'url'))
+    # do not escape url and email columns
+    skip_escape_idx <- which(purrr::map_lgl(
+        xt, ~ (.$format %||% '') %in% c('url', 'email')))
     
     dt <- DT::datatable(
         df,
         options = options_lst,
-        selection = tc_dt$selection %||% 'multiple',
+        selection = .options$selection %||% 'single',
         rownames = FALSE,
         extensions = extensions,
-        colnames = getConfigField(df, tc, 'ui_name'),
-        filter = tc_dt$filter %||% 'none',
+        colnames = getConfigField(df, xt, 'ui_name'),
+        filter = .options$filter %||% 'none',
         escape = -skip_escape_idx
     ) %>%
-        formatDT(tc)
+        formatDT(xt0)
     
     dt
 }

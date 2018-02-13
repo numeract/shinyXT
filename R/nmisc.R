@@ -4,7 +4,8 @@
 # lang ----
 qval <- function(x, default = NULL, envir = parent.frame()) {
     
-    val <- if (class(x)[1L] == 'call') {
+    # see ?mode (abot same as class); do not accept `(` 
+    val <- if (class(x)[1L] %in% c('call', 'name')) {
         tryCatch({
             eval(x, envir = envir)
         }, error = function(e) {
@@ -22,6 +23,8 @@ qval <- function(x, default = NULL, envir = parent.frame()) {
 # date-time ----
 is_POSIXct <- function(x) inherits(x, "POSIXct")
 
+
+#' @export
 format_utc <- function(x, format = NULL, usetz = TRUE) {
     
     if (inherits(x, "Date")) {

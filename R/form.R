@@ -1,33 +1,40 @@
 #' @export
 createForm <- function(.context) {
     
-    # extract from context
-    tbl <- tc_get_subset(.context)
-    tc <- tc_get_mode(.context)
-    tc_ui <- tc[['.ui']]
-    row_df <- qval(tc_ui$pre_ui, .context$row_df)
+    # extract from .context
+    tbl <- getFilteredTbl(.context)
+    xt <- getConfigMode(.context)
+    .options <- xt[['.options']]
+    
+    row_df <- qval(.options$xt_row, .context$row_df)
     if (NROW(row_df) == 0L || NCOL(row_df) == 0L) return(NULL)
+    checkDataConfig(row_df, xt)
     
-    # POSIXct to str, leave Dates alone to use dateInput
+    # POSIXct to str, leave Dates alone (in order to use dateInput)
+    format_POSIXct <- qval(.options[['format_POSIXct']], format_utc)
     row_df <- row_df %>%
-        dplyr::mutate_if(is_POSIXct, format_utc)
-    # visible ui elements in the order within tc
-    tc <- tc %>%
-        discard_at(c('.dt', '.ui')) %>%
-        purrr::keep(~ .$visible) %>%
-        purrr::keep(~ shiny::isTruthy(.$widget))
+        dplyr::mutate_if(is_POSIXct, format_POSIXct)
     
+    # visible ui elements in the order given by xt
+    xt <- xt %>%
+        discard_at(c('.default', '.options')) %>%
+        purrr::keep(~ .$visible) %>%
+        purrr::keep(~ isNotEmptyChr(.$widget))
+    
+    id_prefix <- .options$id_prefix
     row_lst <- list()
     row_idx <- 1L
-    for (tcc in tc) {
+    for (xtc in xt) {
         # extract widget call
-        if (is.list(tcc$widget)) {
-            what <- tcc$widget[[1L]]
-            argm <- tcc$widget[-1L]  #keep any other args
+        if (is.list(xtc$widget)) {
+            what <- xtc$widget[[1L]]
+            argm <- xtc$widget[-1L]     # keep any other arg as list
         } else {
-            what <- tcc$widget
+            what <- xtc$widget
             argm <- list()
         }
+        
+        # special widgets first: br and hr
         if (what == 'br') {
             ctrl <- NULL
             row_idx <- row_idx + 1L
@@ -35,18 +42,16 @@ createForm <- function(.context) {
             ctrl <- shiny::hr()
             row_idx <- row_idx + 1L
         } else {
-            # all ui controls start with prefix `edit_`
-            col_name <- tcc$col_name
-            if (gsub('[^a-zA-Z0-9_]', '', col_name) != col_name) {
-                stop("only [a-zA-Z0-9_] allowed in col names, see ", col_name)
-            }
-            inputId <- paste0('edit_', col_name)
+            # all ui controls start with a prefix
+            col_name <- xtc$col_name
+            inputId <- paste0(id_prefix, col_name)
             value <- row_df[[col_name]]
             
             # eval / add to argm
             argm[['inputId']] <- qval(argm[['inputId']], inputId)
-            argm[['label']] <- qval(argm[['label']], tcc$ui_name)
-            argm[['width']] <- qval(argm[['width']], '100%')
+            argm[['label']] <- qval(argm[['label']], xtc$ui_name)
+            argm[['width']] <- qval(argm[['width']], xtc$width)
+            
             # extra armg, control specific
             if (what %in% c('textInput', 'dateInput', 'numericInput')) {
                 argm[['value']] <- qval(argm[['value']], value)
@@ -54,25 +59,34 @@ createForm <- function(.context) {
                 argm[['choices']] <- qval(argm[['choices']], value)
                 argm[['selected']] <- qval(argm[['selected']], value)
             }
+            
+            # create control
             ctrl1 <- do.call(what, argm)
             
             # display tooltip only if provides additional info
-            if (shiny::isTruthy(tcc$info) && (tcc$info != tcc$ui_name)) {
+            if (isNotEmptyChr(xtc$hover) && (xtc$hover != xtc$ui_name)) {
                 ctrl2 <- bsplus::bs_embed_tooltip(
-                    tag = ctrl1, title = tcc$info, placement = 'left')
+                    tag = ctrl1, title = xtc$hover, placement = 'left')
             } else {
                 ctrl2 <- ctrl1
             }
+            
             # disable (view only) where needed
-            if (tcc$enabled) {
+            if (xtc$enabled) {
                 ctrl3 <- ctrl2
             } else {
                 ctrl3 <- shinyjs::disabled(ctrl2)
             }
-            ctrl <- shiny::column(width = tcc$width, ctrl3)
+            
+            # put control inside a column to make it look pretty
+            if (xtc$column_width > 0) {
+                ctrl <- shiny::column(width = xtc$column_width, ctrl3)
+            } else {
+                ctrl <- ctrl3
+            }
         }
         
-        # add to list
+        # add to list of controls
         if (!is.null(ctrl)) {
             pos_lst <- if (length(row_lst) == row_idx) {
                 row_lst[[row_idx]]
@@ -84,10 +98,14 @@ createForm <- function(.context) {
     }
     
     for (i in seq_along(row_lst)) {
-        pos_lst <- row_lst[[i]] %>%
+        # remove NULL controls (no widget, hover, column)
+        pos_lst <- 
+            row_lst[[i]] %>%
             purrr::discard(~ is.null(.))
         row_lst[[i]] <- do.call(shiny::fluidRow, pos_lst)
     }
+    
+    # hack: need to coll bsplus::use_bs_tooltip() for each custom ui
     row_lst <- c(row_lst, list(bsplus::use_bs_tooltip()))
     ui <- shiny::tagList(row_lst)
     
@@ -99,80 +117,77 @@ createForm <- function(.context) {
 validateForm <- function(input_lst, .context) {
     
     # extract from context
-    tbl <- tc_get_subset(.context)
-    tc <- tc_get_mode(.context)
-    tc_ui <- tc[['.ui']]
+    tbl <- getFilteredTbl(.context)
+    xt <- getConfigMode(.context)
+    .options <- xt[['.options']]
     
-    na_row_df <- tc_na_row_df(.context)
-    row_df <- na_row_df
+    # keep only inputs that have the right prefix; remove prefix
+    id_prefix <- .options$id_prefix
+    pattern <- paste0('^', id_prefix)
+    input_lst <- purrr::keep(input_lst, grepl(pattern, names(input_lst)))
+    names(input_lst) <- gsub(pattern, '', names(input_lst))
+    
+    # get an empty row, which has the right R classes
+    empty_row_df <- getEmptyRow(.context)
+    row_df <- empty_row_df
     msg <- NULL
     tryCatch({
-        # call pre_validate (modifies raw shiny inputs)
-        input_lst <- qval(tc_ui$pre_validate, input_lst)
+        # call pre_validate (modifies raw shiny inputs, ads .msg filed if error)
+        input_lst <- qval(.options$pre_validate, input_lst)
         if (!is.null(input_lst$.msg)) {
             stop(input_lst$.msg)
         }
         
         for (cn in colnames(row_df)) {
-            tcc <- tc[[cn]]
-            if (class(row_df[[cn]])[1L] != tcc$class) {
-                stop("config mismatch for: ", tcc$ui_name)
-            }
-            val <- input_lst[[cn]]
-            if (length(val) == 0L) {
-                val[1L] <- NA
-            }
-            if (length(val) != 1L) {
-                stop("input is not a scalar for: ", tcc$ui_name)
+            xtc <- xt[[cn]]
+            value <- input_lst[[cn]]
+            
+            # cannot have values of length 0, assume NA / NULL in db
+            if (length(value) == 0L) {
+                value[1L] <- NA
             }
             
-            # check class
-            if (class(val)[1L] != tcc$class) {
-                val <- switch(
-                    tcc$class,
-                    integer = as.integer(val),
-                    numeric = as.numeric(val),
-                    character = as.character(val),
-                    Date = as.Date(val, origin = as.Date('1970-01-01')),
-                    POSIXct = as.POSIXct(val, tz = 'UTC'),
-                    stop("do not know how to covert to ", tcc$class)
+            # non scalars are not allowed, use pre_validate
+            if (length(value) != 1L) {
+                stop("input has multiple values for: ", xtc$ui_name, ';\n',
+                     "use pre_validate to collapse multiple values")
+            }
+            
+            # re-cast to match desired xt classes
+            if (class(value)[1L] != xtc$class) {
+                value <- switch(
+                    xtc$class,
+                    integer = as.integer(value),
+                    numeric = as.numeric(value),
+                    character = as.character(value),
+                    Date = as.Date(value, origin = as.Date('1970-01-01')),
+                    POSIXct = as.POSIXct(value, tz = 'UTC'),
+                    stop("do not know how to covert to ", xtc$class)
                 )
             }
-            if (!is.na(val) && is.character(val) && val == '') {
-                val <- NA_character_
+            
+            # empty string char (artifact of selectize) converted to NA
+            if (!is.na(value) && is.character(value) && value == '') {
+                value <- NA_character_
             }
             
             # column level validation
-            v_msg <- qval(tcc$validate)
-            if (!is.null(v_msg)) stop(v_msg, " for: ", tcc$ui_name)
+            v_msg <- qval(xtc$validate)
+            if (!is.null(v_msg)) stop(v_msg, " for: ", xtc$ui_name)
             
-            row_df[[cn]] <- val
+            row_df[[cn]] <- value
         }
         
         # table level validation
-        v_msg <- qval(tc_ui$validate)
+        v_msg <- qval(.options$validate)
         if (!is.null(v_msg)) stop(v_msg)
         
-        # do not add duplicates (edit case)
-        if (.context$mode == 'edit') {
-            skip_cols <- c('edit_date', 'edit_user')
-            old_df <- 
-                dplyr::slice(tbl, .context$row_idx) %>%
-                dplyr::select(-dplyr::one_of(skip_cols))
-            new_df <- 
-                row_df %>%
-                dplyr::select(-dplyr::one_of(skip_cols))
-            if (all(purrr::map2_lgl(old_df, new_df, identical))) {
-                stop("No changes detected, database will not be updated.")
-            }
-        }
-        
-        # finally, call pre_db
-        row_df <- qval(tc_ui$pre_db, row_df)
+        # finally, call finalize
+        row_df <- qval(.options$finalize, row_df)
         
     }, error = function(e) {
         msg <<- e$message
-        row_df <<- na_row_df
+        row_df <<- empty_row_df
     })
     
     list(row_df = row_df, msg = msg)

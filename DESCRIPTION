@@ -2,12 +2,12 @@ Package: shinyXT
 Type: Package
 Title: Extensible Table Framework for Shiny
 Version: 0.1.0
-Authors@R: c(
-    person("Mike", "Badescu", email = "mike.badescu@numeract.com", role = "aut"),
-    person("Ana-Maria", "Niculescu", email = "anamaria.niculescu@cmfconsulting.ro", role = "cre"),
+Author: c(
+    person("Mike", "Badescu", email = "mike.badescu@numeract.com", role = c("aut", "cre")),
+    person("Ana-Maria", "Niculescu", role = "aut"),
     person("Numeract LLC", role = "cph")
     )
-Maintainer: Ana-Maria Niculescu<anamaria.niculescu@cmfconsulting.ro>
+Maintainer: Mike Badescu <mike.badescu@numeract.com>
 Description: Contains a framework that makes it easier to format DT tables, and
     edit and view data frames in Shiny.
 URL: https://github.com/numeract/shinyXT
@@ -16,8 +16,10 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
+Depends: 
+    R (>= 3.3.0),
+    bsplus
 Imports:
-    bsplus,
     dplyr,
     DT,
     magrittr,
@@ -27,4 +29,6 @@ Imports:
     shinyjs,
     tibble
 Suggests:
+    lubridate,
+    shinytest,
     testthat
