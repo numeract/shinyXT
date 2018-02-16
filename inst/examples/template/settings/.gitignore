@@ -1,0 +1,6 @@
+# Ignore everything in this directory
+*
+# Except files below
+!.gitignore
+!README.md
+!settings_mb.R
