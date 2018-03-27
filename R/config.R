@@ -11,10 +11,17 @@ extract_mode <- function(x, mode, XT) {
 
 add_col_default <- function(col_lst, default_lst) {
     # do not export, separate function to allow testing
+    if (length(default_lst) == 0L) {
+        stop("default_lst should not be an empty list") 
+    }
     
+    if (is.null(names(default_lst))) {
+        stop("default_lst should not be an unnamed list")
+    }
     for (nm in names(default_lst)) {
         col_lst[[nm]] <- col_lst[[nm]] %||% default_lst[[nm]]
     }
+    
     
     col_lst
 }
