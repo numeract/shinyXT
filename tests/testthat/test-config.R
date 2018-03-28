@@ -1,5 +1,20 @@
 context("test config functions")
 
+source('../../inst/examples/onetable/onetable_df.R') 
+source('../../inst/examples/onetable/onetable_xt.R') 
+
+context_default <- list(
+    tbl_name = 'onetable',
+    tbl_lst = list(
+        onetable = onetable_df
+    ),
+    filter_lst = NULL,
+    mode = NULL,
+    xt_lst = list(
+        onetable = onetable_xt
+    )
+)
+
 test_that("extract_mode(x, mode, XT) works", {
     
     x <- list(dt = 'dt', edit = 'edit', add = 'add')
@@ -59,6 +74,3 @@ test_that("add_col_default(col_lst, default_lst) stops when unnamed defalut_lst"
     expect_error(add_col_default(col_lst, default_lst))
     
 })
-
-
-
