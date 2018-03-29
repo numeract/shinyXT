@@ -44,6 +44,7 @@ getFilteredTbl <- function(.context, tbl_name = .context$tbl_name) {
 #' @export
 getEmptyRow <- function(.context, tbl_name = .context$tbl_name) {
     
+    if(!is.character(tbl_name)) stop('tbl_name should be character')
     # returns an one row df filled with NAs, preserving R classes
     .context$tbl_lst[[tbl_name]] %>%
         dplyr::slice(1:2) %>%
