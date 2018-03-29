@@ -1,11 +1,9 @@
 context('test xt-utils')
 
-source('../../inst/examples/onetable/onetable_df.R') 
-source('../../inst/examples/onetable/onetable_xt.R') 
-
+# Used in order to test functions with argument .context
 context_default <- list(
     tbl_name = 'onetable',
-    tbl_name2 = 'ama',
+    tbl_name2 = 'onetable2',
     tbl_lst = list(
         onetable = onetable_df
     ),
@@ -74,6 +72,12 @@ test_that("getEmptyRow() stops with non-valid tbl_name", {
 test_that('choices() works', {
      expectation = LETTERS[1:4]
      expect_equal(choices('c_chr', context_default), expectation)
+})
+
+
+test_that('choices() works, with all tables', {
+    expectation = LETTERS[1:4]
+    expect_equal(choices('c_chr', context_default, tbl_name = "all"), expectation)
 })
 
 

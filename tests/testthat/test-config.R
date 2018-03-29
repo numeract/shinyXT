@@ -1,8 +1,6 @@
 context("test config functions")
 
-source('../../inst/examples/onetable/onetable_df.R') 
-source('../../inst/examples/onetable/onetable_xt.R') 
-
+# Used in order to test functions with argument .context
 context_default <- list(
     tbl_name = 'onetable',
     tbl_lst = list(
@@ -62,7 +60,6 @@ test_that("add_col_default(col_lst, default_lst) stops when empty defalut_lst", 
     default_lst <- list()
     
     expect_error(add_col_default(col_lst, default_lst))
-    
 })
 
 
@@ -72,5 +69,4 @@ test_that("add_col_default(col_lst, default_lst) stops when unnamed defalut_lst"
     default_lst <- list(1, 2, 3)
     
     expect_error(add_col_default(col_lst, default_lst))
-    
 })

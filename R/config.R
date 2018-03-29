@@ -11,7 +11,7 @@ extract_mode <- function(x, mode, XT) {
 
 add_col_default <- function(col_lst, default_lst) {
     # do not export, separate function to allow testing
-    if (length(default_lst) == 0L) {
+    if (is.list(default_lst) && length(default_lst) == 0L) {
         stop("default_lst should not be an empty list") 
     }
     
