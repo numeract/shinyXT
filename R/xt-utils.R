@@ -19,7 +19,9 @@ hrXT <- function() {
 #' @export
 getFullTbl <- function(.context, tbl_name = .context$tbl_name) {
     
-    if (!is.character(tbl_name)) stop('tbl_name should be character')
+    if (!rlang::is_scalar_character(tbl_name)) {
+        stop('tbl_name should be character')
+    }
     tbl <- .context$tbl_lst[[tbl_name]]
     if (is.null(tbl)) stop("cannot find table ", tbl_name)
     
