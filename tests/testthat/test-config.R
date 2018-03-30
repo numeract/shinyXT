@@ -7,7 +7,7 @@ context_default <- list(
         onetable = onetable_df
     ),
     filter_lst = NULL,
-    mode = NULL,
+    mode = 'dt',
     xt_lst = list(
         onetable = onetable_xt
     )
@@ -69,4 +69,28 @@ test_that("add_col_default(col_lst, default_lst) stops when unnamed defalut_lst"
     default_lst <- list(1, 2, 3)
     
     expect_error(add_col_default(col_lst, default_lst))
+})
+
+
+test_that("checkDataConfig() works", {
+    
+    context_default <- list(
+        tbl_name = 'onetable',
+        tbl_lst = list(
+            onetable = onetable_df
+        ),
+        filter_lst = NULL,
+        mode = "dt",
+        xt_lst = list(
+            onetable = onetable_xt
+        )
+    )
+    
+    # extract from .context
+    tbl <- getFilteredTbl(context_default)
+    xt <- getConfigMode(context_default)
+    .options <- xt[['.options']]
+    df <- qval(.options$pre_dt, tbl)
+
+    expect_true(checkDataConfig(df, xt))
 })
