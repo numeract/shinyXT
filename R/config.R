@@ -30,15 +30,22 @@ add_col_default <- function(col_lst, default_lst) {
     col_lst
 }
 
-
+#' Extracts config mode from context
+#' 
+#' Extracts from second level in xt_lst, 
+#' if it contains only valid modes  
+#' 
+#' @param .context The shinyXT context
+#' @param mode The name of the config mode belonging to the context
+#' 
+#' @return returns a list representing the extracted context mode
+#' 
 #' @export
 getConfigMode <- function(.context, mode = .context$mode) {
-    # Extracts from second level in xt_lst, if it contains only valid modes
     
     xt <- .context$xt_lst[[.context$tbl_name]]
     xt <- xt %>%
         purrr::map(~ purrr::map(., extract_mode, mode = mode, XT = .XT))
-    
     # populate values from .default
     non_dot_idx <- which(!grepl('^\\.', names(xt)))
     xt <- xt %>%
@@ -47,12 +54,14 @@ getConfigMode <- function(.context, mode = .context$mode) {
     xt
 }
 
-
+#' Check XT config columns
+#' 
+#' Checks whether an xt Config has
+#' enough col info for a tbl (a data frame)
 #' @export
 checkDataConfig <- function(tbl, xt, if_error = stop, ...) {
-    # checks whether an xt Config has enough col info for a tbl (a data frame)
-
-    # if_error is a function that accepts an message
+    
+    # if_error is a function that accepts a message
     # e.g. cat, message, warning, stop
     # arguments in ... will be passed to if_error()
     
