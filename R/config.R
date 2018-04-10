@@ -30,15 +30,22 @@ add_col_default <- function(col_lst, default_lst) {
     col_lst
 }
 
-#' Extracts config mode from context
+#' Extracts Configuration Mode from Context
 #' 
 #' Extracts from second level in xt_lst, 
-#' if it contains only valid modes  
+#' if it contains only valid modes.  
+#' If any level 2 (only!) field (e.g. validate) is a list of mode fields,
+#' getConfigMode() will be used to extract only that mode.
+#  Valid modes: dt, edit, add.
 #' 
-#' @param .context The shinyXT context
+#' @param .context List. The shinyXT context
 #' @param mode The name of the config mode belonging to the context
 #' 
-#' @return returns a list representing the extracted context mode
+#' @return A list representing the settings of a specific context mode
+#' 
+#' @family Config functions
+#' 
+#' @examples getConfigMode(.context = context, mode = .context$mode) 
 #' 
 #' @export
 getConfigMode <- function(.context, mode = .context$mode) {
@@ -54,16 +61,24 @@ getConfigMode <- function(.context, mode = .context$mode) {
     xt
 }
 
-#' Check XT config columns
+#' Check XT Configuration Columns
 #' 
-#' Checks whether an xt Config has
-#' enough col info for a tbl (a data frame)
+#' Checks whether an XT config has
+#' enough column info for a data table (data frame)
+#' 
+#' @param tbl Data table (data frame) containing the actual data the shiny app
+#' works with 
+#' @param xt A list representing the settings of a specific context mode 
+#' @param if_error  Function that accepts a message 
+#' e.g. cat, message, warning, stop
+#' @param ... Arguments in ... will be passed to if_error()
+#' 
+#' @return Logical. TRUE if XT config contains the nacessary info for tbl
+#' 
+#' @family Config functions
+#' 
 #' @export
 checkDataConfig <- function(tbl, xt, if_error = stop, ...) {
-    
-    # if_error is a function that accepts a message
-    # e.g. cat, message, warning, stop
-    # arguments in ... will be passed to if_error()
     
     col_names <- colnames(tbl)
     xt_names <- names(xt)
@@ -84,10 +99,22 @@ checkDataConfig <- function(tbl, xt, if_error = stop, ...) {
     }
 }
 
-
+#' Gets the Confinguration Field
+#' 
+#' Returns values from an xt field in the order of the tbl columns
+#' 
+#' @param tbl Data table (data frame) containing the actual data the shiny app
+#' works with 
+#' @param xt A list representing the settings of a specific context mode 
+#' 
+#' @param field_name A character representing the config field
+#' 
+#' @return A character representing the config field
+#' 
+#' @family Config functions
+#' 
 #' @export
 getConfigField <- function(tbl, xt, field_name) {
-    # returns values from an xt filed in the order of the tbl columns
     
     col_names <- colnames(tbl)
     # TODO: drop/ignore dot fields in xt
