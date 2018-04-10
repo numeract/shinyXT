@@ -1,3 +1,5 @@
+#' Add a HTML Line Break.
+#' 
 #' @export
 brXT <- function() {
     list(
@@ -7,6 +9,8 @@ brXT <- function() {
 }
 
 
+#' Add a HTML Horizonal Row.
+#' 
 #' @export
 hrXT <- function() {
     list(
@@ -16,6 +20,15 @@ hrXT <- function() {
 }
 
 
+#' Get Entire Table
+#' 
+#' Returns the table from the contexts' table list.
+#' 
+#' @param .context List. The shinyXT context.
+#' @param tbl_name Name of the requested table.
+#' 
+#' @seealso @seealso \code{\link{getFilteredTbl}}
+#' 
 #' @export
 getFullTbl <- function(.context, tbl_name = .context$tbl_name) {
     
@@ -29,6 +42,15 @@ getFullTbl <- function(.context, tbl_name = .context$tbl_name) {
 }
 
 
+#' Get Filtered Table
+#' 
+#' Returns a filtered table from the contexts' table list and filter list.
+#' 
+#' @param .context List. The shinyXT context.
+#' @param tbl_name Name of the requested table.
+#' 
+#' @seealso @seealso \code{\link{getFilteredTbl}}
+#' 
 #' @export
 getFilteredTbl <- function(.context, tbl_name = .context$tbl_name) {
     
@@ -43,6 +65,13 @@ getFilteredTbl <- function(.context, tbl_name = .context$tbl_name) {
 }
 
 
+#' Get an Empty Row
+#' 
+#' Returns a one row data frame of NA's.
+#' 
+#' @param .context List. The shinyXT context.
+#' @param tbl_name Name of the requested table.
+#' 
 #' @export
 getEmptyRow <- function(.context, tbl_name = .context$tbl_name) {
     
@@ -87,6 +116,12 @@ choices <- function(var_col,
 }
 
 
+#' Check for Empty Character
+#' 
+#' Checks if input is NOT empty character.
+#' 
+#' @param x Input to be checked.
+#' 
 #' @export
 isNotEmptyChr <- function(x) {
     

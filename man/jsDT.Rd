@@ -2,10 +2,10 @@
 % Please edit documentation in R/dt-misc.R
 \name{jsDT}
 \alias{jsDT}
-\title{js scripts to be used with DT calls}
+\title{Add JS scripts}
 \usage{
 jsDT(script_name = c("4col"))
 }
 \description{
-js scripts to be used with DT calls
+Adds JS scripts to be used with Data Table calls.
 }

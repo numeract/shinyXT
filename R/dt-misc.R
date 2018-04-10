@@ -1,4 +1,6 @@
-#' js scripts to be used with DT calls
+#' Add JS scripts
+#' 
+#' Adds JS scripts to be used with Data Table calls.
 #' 
 #' @export
 jsDT <- function(script_name = c('4col')) {
@@ -13,7 +15,29 @@ jsDT <- function(script_name = c('4col')) {
     js
 }
 
-
+#' Format a Data Table.
+#' 
+#' Formats the DT based on the options specified in the configuration.
+#' 
+#' @param dt Data table.
+#' @param xt Config mode from context.
+#' 
+#' @seealso \code{\link{validateDT}}
+#' 
+#' @examples
+#' xt <- getConfigMode(.context)
+#' dt <- DT::datatable(
+#'     df,
+#'     options = options_lst,
+#'     selection = .options$selection %||% 'single',
+#'     rownames = FALSE,
+#'     extensions = extensions,
+#'     colnames = getConfigField(df, xt, 'ui_name'),
+#'     filter = .options$filter %||% 'none',
+#'     escape = -skip_escape_idx
+#'  ) %>%
+#'     formatDT(xt0)
+#'     
 #' @export
 formatDT <- function(dt, xt) {
     
@@ -103,6 +127,12 @@ formatDT <- function(dt, xt) {
 }
 
 
+#' Create a Data Table.
+#' 
+#' Creates a DT based on the settings specified in the context.
+#' 
+#' @seealso \code{\link{createDT}}
+#' 
 #' @export
 createDT <- function(.context) {
     
