@@ -94,6 +94,7 @@ test_that("isNotEmptyChr() works with character(0)", {
 test_that("isNotEmptyChr() works with NAs", {
     expect_false(isNotEmptyChr(NA))
     expect_false(isNotEmptyChr(NA_character_))
+    expect_false(isNotEmptyChr(c(NA, NA, NA)))
 })
 
 
