@@ -3,7 +3,7 @@
 #' @export
 brXT <- function() {
     list(
-        widget = 'br',
+        widget = "br",
         visible = TRUE
     )
 }
@@ -14,7 +14,7 @@ brXT <- function() {
 #' @export
 hrXT <- function() {
     list(
-        widget = 'hr',
+        widget = "hr",
         visible = TRUE
     )
 }
@@ -33,7 +33,7 @@ hrXT <- function() {
 getFullTbl <- function(.context, tbl_name = .context$tbl_name) {
     
     if (!rlang::is_scalar_character(tbl_name)) {
-        stop('tbl_name should be character')
+        stop("tbl_name should be character")
     }
     tbl <- .context$tbl_lst[[tbl_name]]
     if (is.null(tbl)) stop("cannot find table ", tbl_name)
@@ -75,7 +75,7 @@ getFilteredTbl <- function(.context, tbl_name = .context$tbl_name) {
 #' @export
 getEmptyRow <- function(.context, tbl_name = .context$tbl_name) {
     
-    if(!is.character(tbl_name)) stop('tbl_name should be character')
+    if (!is.character(tbl_name)) stop("tbl_name should be character")
     # returns an one row df filled with NAs, preserving R classes
     .context$tbl_lst[[tbl_name]] %>%
         dplyr::slice(1:2) %>%
@@ -83,22 +83,23 @@ getEmptyRow <- function(.context, tbl_name = .context$tbl_name) {
         dplyr::slice(1L)
 }
 
+# TODO: doc (Mike)
 
 #' @export
-choices <- function(var_col, 
-                    .context, 
+choices <- function(var_col,
+                    .context,
                     tbl_name = .context$tbl_name,
-                    keep_na = c('if_any', 'omit_na', 'insert_na')
+                    keep_na = c("if_any", "omit_na", "insert_na")
 ) {
-    keep_na = match.arg(keep_na)
-    if (tbl_name == 'all') tbl_name <- names(.context$tbl_lst)
+    keep_na <- match.arg(keep_na)
+    if (tbl_name == "all") tbl_name <- names(.context$tbl_lst)
     
     y <- character()
     for (tn in tbl_name) {
         df <- .context$tbl_lst[[tn]]
         x <- df[[var_col]]
         if (length(x) > 0L) {
-            x[x == ''] <- NA_character_
+            x[x == ""] <- NA_character_
             yy <- sort(unique(x), na.last = FALSE)
             y <- c(y, yy)
         }
@@ -106,11 +107,11 @@ choices <- function(var_col,
     y <- sort(unique(y), na.last = FALSE)
     
     z <- if (is.na(y[1])) {
-        if (keep_na == 'omit_na') stats::na.omit(y) else y
+        if (keep_na == "omit_na") stats::na.omit(y) else y
     } else {
-        if (keep_na == 'insert_na') c(NA_character_, y) else y
+        if (keep_na == "insert_na") c(NA_character_, y) else y
     }
-    z[is.na(z)] <- ''
+    z[is.na(z)] <- ""
     
     unique(z)
 }
@@ -130,7 +131,7 @@ isNotEmptyChr <- function(x) {
     # all NAs
     if (length(stats::na.omit(x)) == 0L) return(FALSE)
     # one empty character
-    if (is.character(x) && length(x) == 1L && x == '') return(FALSE)
+    if (is.character(x) && length(x) == 1L && x == "") return(FALSE)
     
     TRUE
 }

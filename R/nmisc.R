@@ -4,8 +4,8 @@
 # lang ----
 qval <- function(x, default = NULL, envir = parent.frame()) {
     
-    # see ?mode (abot same as class); do not accept `(` 
-    val <- if (class(x)[1L] %in% c('call', 'name')) {
+    # see ?mode (abot same as class); do not accept `(`
+    val <- if (class(x)[1L] %in% c("call", "name")) {
         tryCatch({
             eval(x, envir = envir)
         }, error = function(e) {
@@ -36,7 +36,7 @@ format_utc <- function(x, format = NULL, usetz = TRUE) {
         if (is.null(format)) {
             format <- "%Y-%m-%d %H:%M:%S"
         }
-        format.POSIXct(x, format = format, tz = 'UTC', usetz = usetz)
+        format.POSIXct(x, format = format, tz = "UTC", usetz = usetz)
     } else {
         stop("not a Date/POSIXct")
     }

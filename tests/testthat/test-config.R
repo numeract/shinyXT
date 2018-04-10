@@ -2,12 +2,12 @@ context("test config functions")
 
 # Used in order to test functions with argument .context
 context_default <- list(
-    tbl_name = 'onetable',
+    tbl_name = "onetable",
     tbl_lst = list(
         onetable = onetable_df
     ),
     filter_lst = NULL,
-    mode = 'dt',
+    mode = "dt",
     xt_lst = list(
         onetable = onetable_xt
     )
@@ -15,22 +15,22 @@ context_default <- list(
 
 test_that("extract_mode(x, mode, XT) works", {
     
-    x <- list(dt = 'dt', edit = 'edit', add = 'add')
-    expect_equal(extract_mode(x = x, mode = 'edit', XT = .XT), 'edit')
+    x <- list(dt = "dt", edit = "edit", add = "add")
+    expect_equal(extract_mode(x = x, mode = "edit", XT = .XT), "edit")
 })
 
 
 test_that("extract_mode(x, mode, XT) works without all x names in .XT$valid_mode", {
     
-    x <- list(dt = 'dt', edit = 'edit', add = 'add', additional = 'additional')
-    expect_equal(extract_mode(x = x, mode = 'edit', XT = .XT), x)
+    x <- list(dt = "dt", edit = "edit", add = "add", additional = "additional")
+    expect_equal(extract_mode(x = x, mode = "edit", XT = .XT), x)
 })
 
 
 test_that("extract_mode(x, mode, XT) works with non-list input", {
     
-    x <- c('dt', 'edit', 'add')
-    expect_equal(extract_mode(x = x, mode = 'edit', XT = .XT), x)
+    x <- c("dt", "edit", "add")
+    expect_equal(extract_mode(x = x, mode = "edit", XT = .XT), x)
 })
 
 
@@ -54,7 +54,7 @@ test_that("add_col_default(col_lst, default_lst) works for non-empty col_lst", {
 })
 
 
-test_that("add_col_default(col_lst, default_lst) stops when empty defalut_lst", {
+test_that("add_col_default(col_lst, default_lst) stops when empty default_lst", {
     
     col_lst <- list(col1 = 2)
     default_lst <- list()
@@ -75,7 +75,7 @@ test_that("add_col_default(col_lst, default_lst) stops when unnamed defalut_lst"
 test_that("checkDataConfig() works", {
     
     context_default <- list(
-        tbl_name = 'onetable',
+        tbl_name = "onetable",
         tbl_lst = list(
             onetable = onetable_df
         ),
@@ -89,7 +89,7 @@ test_that("checkDataConfig() works", {
     # extract from .context
     tbl <- getFilteredTbl(context_default)
     xt <- getConfigMode(context_default)
-    .options <- xt[['.options']]
+    .options <- xt[[".options"]]
     df <- qval(.options$pre_dt, tbl)
 
     expect_true(checkDataConfig(df, xt))

@@ -8,7 +8,7 @@
 
 
 # source constants, settings and engine only once
-source('main.R')
+source("main.R")
 
 
 # additional shiny libraries (not used by engine)
@@ -17,8 +17,8 @@ library(shiny)
 
 
 # shiny related
-source('app_ui.R')
-source('app_server.R')
+source("app_ui.R")
+source("app_server.R")
 
 
 

@@ -1,7 +1,7 @@
 library(shiny)
 
-source('onetable_df.R')
-source('onetable_xt.R')
+source("onetable_df.R")
+source("onetable_xt.R")
 
 shinyServer(function(input, output, session) {
     
@@ -10,7 +10,7 @@ shinyServer(function(input, output, session) {
     # everything that is in context is available to callbacks
     # the context can contain several tables, only one being "active"
     context_default <- list(
-        tbl_name = 'onetable',
+        tbl_name = "onetable",
         tbl_lst = list(
             onetable = onetable_df
         ),
@@ -24,7 +24,7 @@ shinyServer(function(input, output, session) {
     # reactive data
     rv <- reactiveValues(
         filter_lst = NULL,
-        mode = 'dt',
+        mode = "dt",
         row_idx = NULL
     )
     
@@ -53,15 +53,15 @@ shinyServer(function(input, output, session) {
         row_idx <- input$view_dt_rows_selected
         req(row_idx)
         
-        # show Edit tab then go there 
+        # show Edit tab then go there
         shinyjs::toggleState(
             condition = TRUE, selector = "#main_panel li a[data-value=Edit]")
         shinyjs::toggleState(
             condition = FALSE, selector = "#main_panel li a[data-value=View]")
         updateTabsetPanel(
             session = session,
-            inputId = 'main_panel',
-            selected = 'Edit'
+            inputId = "main_panel",
+            selected = "Edit"
         )
         
         # clear edit message
@@ -69,7 +69,7 @@ shinyServer(function(input, output, session) {
         
         # lock in context info
         rv$mode <- NULL
-        rv$mode <- 'edit'
+        rv$mode <- "edit"
         rv$row_idx <- row_idx
     })
     
@@ -84,8 +84,8 @@ shinyServer(function(input, output, session) {
             condition = FALSE, selector = "#main_panel li a[data-value=View]")
         updateTabsetPanel(
             session = session,
-            inputId = 'main_panel',
-            selected = 'Edit'
+            inputId = "main_panel",
+            selected = "Edit"
         )
         
         # clear edit message
@@ -93,15 +93,15 @@ shinyServer(function(input, output, session) {
         
         # lock in context info
         rv$mode <- NULL
-        rv$mode <- 'add'
+        rv$mode <- "add"
         rv$row_idx <- NULL
     })
     
     
     output$edit_ui <- renderUI({
         mode <- rv$mode
-        req(mode %in% c('edit', 'add'))
-        if (mode == 'edit') {
+        req(mode %in% c("edit", "add"))
+        if (mode == "edit") {
             row_idx <- isolate(rv$row_idx)
             req(row_idx)
         } else {
@@ -120,8 +120,8 @@ shinyServer(function(input, output, session) {
         input$edit_ok
     }, {
         mode <- rv$mode
-        req(mode %in% c('edit', 'add'))
-        if (mode == 'edit') {
+        req(mode %in% c("edit", "add"))
+        if (mode == "edit") {
             row_idx <- isolate(rv$row_idx)
             req(row_idx)
         } else {
@@ -143,8 +143,8 @@ shinyServer(function(input, output, session) {
                 condition = FALSE, selector = "#main_panel li a[data-value=Edit]")
             updateTabsetPanel(
                 session = session,
-                inputId = 'main_panel',
-                selected = 'View'
+                inputId = "main_panel",
+                selected = "View"
             )
             
             # clear edit message
@@ -157,7 +157,7 @@ shinyServer(function(input, output, session) {
             
             # update mode
             rv$mode <- NULL
-            rv$mode <- 'dt'
+            rv$mode <- "dt"
         } else {
             flag$edit <- vld_lst$msg
         }
@@ -174,8 +174,8 @@ shinyServer(function(input, output, session) {
             condition = FALSE, selector = "#main_panel li a[data-value=Edit]")
         updateTabsetPanel(
             session = session,
-            inputId = 'main_panel',
-            selected = 'View'
+            inputId = "main_panel",
+            selected = "View"
         )
         
         # clear edit message
@@ -183,7 +183,7 @@ shinyServer(function(input, output, session) {
         
         # update mode
         rv$mode <- NULL
-        rv$mode <- 'dt'
+        rv$mode <- "dt"
     })
     
     

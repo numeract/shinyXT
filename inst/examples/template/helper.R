@@ -2,5 +2,3 @@
 # only functions, libraries loaded in main; needs constants.R
 
 # !diagnostics suppress=.,
-
-

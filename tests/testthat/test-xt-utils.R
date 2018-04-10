@@ -1,9 +1,9 @@
-context('test xt-utils')
+context("test xt-utils")
 
 # Used in order to test functions with argument .context
 context_default <- list(
-    tbl_name = 'onetable',
-    tbl_name2 = 'onetable2',
+    tbl_name = "onetable",
+    tbl_name2 = "onetable2",
     tbl_lst = list(
         onetable = onetable_df
     ),
@@ -15,7 +15,7 @@ context_default <- list(
 )
 
 test_that("getFullTbl() works", {
-    expect_equal(getFullTbl(context_default), 
+    expect_equal(getFullTbl(context_default),
                  context_default$tbl_lst[[context_default$tbl_name]])
 })
 
@@ -35,7 +35,7 @@ test_that("getFullTbl() stops with numeric tbl_name", {
 
 test_that("getFilteredTbl() works", {
     
-    expect_equal(getFilteredTbl(context_default), 
+    expect_equal(getFilteredTbl(context_default),
                  context_default$tbl_lst[[context_default$tbl_name]])
 })
 
@@ -69,15 +69,15 @@ test_that("getEmptyRow() stops with non-valid tbl_name", {
 
 
 
-test_that('choices() works', {
-     expectation = LETTERS[1:4]
-     expect_equal(choices('c_chr', context_default), expectation)
+test_that("choices() works", {
+     expectation <- LETTERS[1:4]
+     expect_equal(choices("c_chr", context_default), expectation)
 })
 
 
-test_that('choices() works, with all tables', {
-    expectation = LETTERS[1:4]
-    expect_equal(choices('c_chr', context_default, tbl_name = "all"), expectation)
+test_that("choices() works, with all tables", {
+    expectation <- LETTERS[1:4]
+    expect_equal(choices("c_chr", context_default, tbl_name = "all"), expectation)
 })
 
 
@@ -99,7 +99,7 @@ test_that("isNotEmptyChr() works with NAs", {
 
 
 test_that("isNotEmptyChr() works with empty string", {
-    expect_false(isNotEmptyChr(''))
+    expect_false(isNotEmptyChr(""))
 })
 
 

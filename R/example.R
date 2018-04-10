@@ -8,7 +8,7 @@
 #' @param example_name String that points to the name of the example.
 #' 
 #' @export
-shinyXTExample <- function(example_name = 'onetable') {
+shinyXTExample <- function(example_name = "onetable") {
     
     matched_examples <- list.files(system.file("examples", package = "shinyXT"))
     

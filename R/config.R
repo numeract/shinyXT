@@ -17,7 +17,7 @@ add_col_default <- function(col_lst, default_lst) {
     
     # col_lst may be empty
     if (length(default_lst) == 0L)
-        stop("default_lst must not be an empty list") 
+        stop("default_lst must not be an empty list")
     
     nms <- names(default_lst)
     if (is.null(nms) || ("" %in% nms))
@@ -32,8 +32,8 @@ add_col_default <- function(col_lst, default_lst) {
 
 #' Extracts Configuration Mode from Context
 #' 
-#' Extracts from second level in xt_lst, 
-#' if it contains only valid modes.  
+#' Extracts from second level in xt_lst,
+#' if it contains only valid modes.
 #' If any level 2 (only!) field (e.g. validate) is a list of mode fields,
 #' getConfigMode() will be used to extract only that mode.
 #  Valid modes: dt, edit, add.
@@ -45,7 +45,7 @@ add_col_default <- function(col_lst, default_lst) {
 #' 
 #' @family config functions
 #' 
-#' @examples getConfigMode(.context = context, mode = .context$mode) 
+#' @examples getConfigMode(.context = context, mode = .context$mode)
 #' 
 #' @export
 getConfigMode <- function(.context, mode = .context$mode) {
@@ -54,7 +54,7 @@ getConfigMode <- function(.context, mode = .context$mode) {
     xt <- xt %>%
         purrr::map(~ purrr::map(., extract_mode, mode = mode, XT = .XT))
     # populate values from .default
-    non_dot_idx <- which(!grepl('^\\.', names(xt)))
+    non_dot_idx <- which(!grepl("^\\.", names(xt)))
     xt <- xt %>%
         purrr::map_at(non_dot_idx, add_col_default, default_lst = xt$.default)
     
@@ -67,9 +67,9 @@ getConfigMode <- function(.context, mode = .context$mode) {
 #' enough column info for a data table (data frame)
 #' 
 #' @param tbl Data table (data frame) containing the actual data the shiny app
-#' works with 
-#' @param xt A list representing the settings of a specific context mode 
-#' @param if_error  Function that accepts a message 
+#' works with
+#' @param xt A list representing the settings of a specific context mode
+#' @param if_error  Function that accepts a message
 #' e.g. cat, message, warning, stop
 #' @param ... Arguments in ... will be passed to if_error()
 #' 
@@ -87,7 +87,7 @@ checkDataConfig <- function(tbl, xt, if_error = stop, ...) {
         # nice error message
         idx <- which(!(col_names %in% xt_names))
         if (length(idx) > 0L) {
-            msg <- paste(col_names[idx], collapse = ', ')
+            msg <- paste(col_names[idx], collapse = ", ")
             msg <- paste("No XT Config field for:", msg)
         }
         if_error(msg, ...)
@@ -105,7 +105,7 @@ checkDataConfig <- function(tbl, xt, if_error = stop, ...) {
 #' 
 #' @param tbl Data table (data frame) containing the actual data the shiny app
 #'  works with
-#' @param xt A list representing the settings of a specific context mode 
+#' @param xt A list representing the settings of a specific context mode
 #' 
 #' @param field_name A character representing the config field
 #' 

@@ -2,7 +2,7 @@
 #'
 #' Creates the form that allows you to add a new record to your table,
 #'  based on the setting in your context.
-#'  
+#' 
 #' @param .context List. The shinyXT context.
 #' 
 #' @family form functions
@@ -11,22 +11,21 @@
 createForm <- function(.context) {
     
     # extract from .context
-    tbl <- getFilteredTbl(.context)
     xt <- getConfigMode(.context)
-    .options <- xt[['.options']]
+    .options <- xt[[".options"]]
     
     row_df <- qval(.options$xt_row, .context$row_df)
     if (NROW(row_df) == 0L || NCOL(row_df) == 0L) return(NULL)
     checkDataConfig(row_df, xt)
     
     # POSIXct to str, leave Dates alone (in order to use dateInput)
-    format_POSIXct <- qval(.options[['format_POSIXct']], format_utc)
+    format_POSIXct <- qval(.options[["format_POSIXct"]], format_utc)
     row_df <- row_df %>%
         dplyr::mutate_if(is_POSIXct, format_POSIXct)
     
     # visible ui elements in the order given by xt
     xt <- xt %>%
-        discard_at(c('.default', '.options')) %>%
+        discard_at(c(".default", ".options")) %>%
         purrr::keep(~ .$visible) %>%
         purrr::keep(~ isNotEmptyChr(.$widget))
     
@@ -44,10 +43,10 @@ createForm <- function(.context) {
         }
         
         # special widgets first: br and hr
-        if (what == 'br') {
+        if (what == "br") {
             ctrl <- NULL
             row_idx <- row_idx + 1L
-        } else if (what == 'hr') {
+        } else if (what == "hr") {
             ctrl <- shiny::hr()
             row_idx <- row_idx + 1L
         } else {
@@ -57,16 +56,16 @@ createForm <- function(.context) {
             value <- row_df[[col_name]]
             
             # eval / add to argm
-            argm[['inputId']] <- qval(argm[['inputId']], inputId)
-            argm[['label']] <- qval(argm[['label']], xtc$ui_name)
-            argm[['width']] <- qval(argm[['width']], xtc$width)
+            argm[["inputId"]] <- qval(argm[["inputId"]], inputId)
+            argm[["label"]] <- qval(argm[["label"]], xtc$ui_name)
+            argm[["width"]] <- qval(argm[["width"]], xtc$width)
             
             # extra armg, control specific
-            if (what %in% c('textInput', 'dateInput', 'numericInput')) {
-                argm[['value']] <- qval(argm[['value']], value)
-            } else if (what %in% c('selectInput', 'selectizeInput')) {
-                argm[['choices']] <- qval(argm[['choices']], value)
-                argm[['selected']] <- qval(argm[['selected']], value)
+            if (what %in% c("textInput", "dateInput", "numericInput")) {
+                argm[["value"]] <- qval(argm[["value"]], value)
+            } else if (what %in% c("selectInput", "selectizeInput")) {
+                argm[["choices"]] <- qval(argm[["choices"]], value)
+                argm[["selected"]] <- qval(argm[["selected"]], value)
             }
             
             # create control
@@ -75,7 +74,7 @@ createForm <- function(.context) {
             # display tooltip only if provides additional info
             if (isNotEmptyChr(xtc$hover) && (xtc$hover != xtc$ui_name)) {
                 ctrl2 <- bsplus::bs_embed_tooltip(
-                    tag = ctrl1, title = xtc$hover, placement = 'left')
+                    tag = ctrl1, title = xtc$hover, placement = "left")
             } else {
                 ctrl2 <- ctrl1
             }
@@ -108,7 +107,7 @@ createForm <- function(.context) {
     
     for (i in seq_along(row_lst)) {
         # remove NULL controls (no widget, hover, column)
-        pos_lst <- 
+        pos_lst <-
             row_lst[[i]] %>%
             purrr::discard(~ is.null(.))
         row_lst[[i]] <- do.call(shiny::fluidRow, pos_lst)
@@ -143,15 +142,14 @@ createForm <- function(.context) {
 validateForm <- function(input_lst, .context) {
     
     # extract from context
-    tbl <- getFilteredTbl(.context)
     xt <- getConfigMode(.context)
-    .options <- xt[['.options']]
+    .options <- xt[[".options"]]
     
     # keep only inputs that have the right prefix; remove prefix
     id_prefix <- .options$id_prefix
-    pattern <- paste0('^', id_prefix)
+    pattern <- paste0("^", id_prefix)
     input_lst <- purrr::keep(input_lst, grepl(pattern, names(input_lst)))
-    names(input_lst) <- gsub(pattern, '', names(input_lst))
+    names(input_lst) <- gsub(pattern, "", names(input_lst))
     
     # get an empty row, which has the right R classes
     empty_row_df <- getEmptyRow(.context)
@@ -165,7 +163,7 @@ validateForm <- function(input_lst, .context) {
         }
         
         for (cn in colnames(row_df)) {
-            xtc <- xt[[cn]] 
+            xtc <- xt[[cn]]
             value <- input_lst[[cn]]
             
             # cannot have values of length 0, assume NA / NULL in db
@@ -175,7 +173,7 @@ validateForm <- function(input_lst, .context) {
             
             # non scalars are not allowed, use pre_validate
             if (length(value) != 1L) {
-                stop("input has multiple values for: ", xtc$ui_name, ';\n',
+                stop("input has multiple values for: ", xtc$ui_name, ";\n",
                      "use pre_validate to collapse multiple values")
             }
             
@@ -186,14 +184,14 @@ validateForm <- function(input_lst, .context) {
                     integer = as.integer(value),
                     numeric = as.numeric(value),
                     character = as.character(value),
-                    Date = as.Date(value, origin = as.Date('1970-01-01')),
-                    POSIXct = as.POSIXct(value, tz = 'UTC'),
+                    Date = as.Date(value, origin = as.Date("1970-01-01")),
+                    POSIXct = as.POSIXct(value, tz = "UTC"),
                     stop("do not know how to covert to ", xtc$class)
                 )
             }
             
             # empty string char (artifact of selectize) converted to NA
-            if (!is.na(value) && is.character(value) && value == '') {
+            if (!is.na(value) && is.character(value) && value == "") {
                 value <- NA_character_
             }
             
