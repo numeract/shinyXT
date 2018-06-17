@@ -42,12 +42,18 @@ test_that("getFilteredTbl() works", {
 
 test_that("getEmptyRow() works with context_default", {
     
-    expectation <- tibble::tibble(a0_num = NA_real_, b_int = NA_integer_,
-                          c_chr = NA_character_, d_date = as.Date(NA),
-                          e_dttm = as.POSIXct(NA), p0_num = NA_real_,
-                          p1_num = NA_real_, u_url = NA_character_,
-                          w_email = NA_character_)
-    
+    expectation <- data.frame(
+        a0_num = NA_real_, 
+        b_int = NA_integer_,
+        c_chr = NA_character_, 
+        d_date = as.Date(NA),
+        e_dttm = as.POSIXct(NA), 
+        p0_num = NA_real_,
+        p1_num = NA_real_, 
+        u_url = NA_character_,
+        w_email = NA_character_,
+        stringsAsFactors = FALSE
+    )
     expect_equal(getEmptyRow(context_default), expectation)
 })
 
