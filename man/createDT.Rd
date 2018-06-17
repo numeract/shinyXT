@@ -10,5 +10,5 @@ createDT(.context)
 Creates a DT based on the settings specified in the context.
 }
 \seealso{
-\code{\link{createDT}}
+\code{\link{formatDT}}
 }

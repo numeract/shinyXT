@@ -11,5 +11,5 @@ shinyXTExample(example_name = "onetable")
 }
 \description{
 It builds and runs the specified shinyXT example, based on the configuration
-files found in the same folder.
+ files found in the same folder.
 }

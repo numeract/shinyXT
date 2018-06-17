@@ -8,12 +8,13 @@ downloadButtonWithIcon(outputId, label = "Download", class = NULL,
   icon = shiny::icon("download"), ...)
 }
 \description{
-Creates a download button or link which when clicked initiates a 
- browser download. It allows the user to customize the button by 
- adding an icon to it. It has a corresponding downloadHandler 
+Creates a download button or link which when clicked initiates a
+ browser download. It allows the user to customize the button by
+ adding an icon to it. It has a corresponding downloadHandler
  in the server function.
- 
- @param outputId Character, the name of the output slot to which the
+}
+\details{
+@param outputId Character, the name of the output slot to which the
   corresponding downloadHandler is assigned.
  @param label the label that appears on the button
  @param class additional CSS classes
@@ -23,3 +24,4 @@ Creates a download button or link which when clicked initiates a
 \seealso{
 Other shiny misc functions: \code{\link{progressInfo}}
 }
+\concept{shiny misc functions}

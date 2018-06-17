@@ -27,3 +27,4 @@ observeEvent({
 \seealso{
 Other form functions: \code{\link{createForm}}
 }
+\concept{form functions}

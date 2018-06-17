@@ -27,8 +27,8 @@ dt <- DT::datatable(
     escape = -skip_escape_idx
  ) \%>\%
     formatDT(xt0)
-    
+
 }
 \seealso{
-\code{\link{validateDT}}
+\code{\link{createDT}}
 }

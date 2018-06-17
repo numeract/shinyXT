@@ -16,3 +16,4 @@ Creates the form that allows you to add a new record to your table,
 \seealso{
 Other form functions: \code{\link{validateForm}}
 }
+\concept{form functions}

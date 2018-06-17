@@ -12,7 +12,7 @@ works with}
 
 \item{xt}{A list representing the settings of a specific context mode}
 
-\item{if_error}{Function that accepts a message 
+\item{if_error}{Function that accepts a message
 e.g. cat, message, warning, stop}
 
 \item{...}{Arguments in ... will be passed to if_error()}
@@ -28,3 +28,4 @@ enough column info for a data table (data frame)
 Other config functions: \code{\link{getConfigField}},
   \code{\link{getConfigMode}}
 }
+\concept{config functions}
