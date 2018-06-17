@@ -40,7 +40,7 @@ test_that("getFilteredTbl() works", {
 })
 
 
-test_that("getEmptyRow() works with context_default", {
+test_that("getNARow() works with context_default", {
     
     expectation <- data.frame(
         a0_num = NA_real_, 
@@ -54,23 +54,23 @@ test_that("getEmptyRow() works with context_default", {
         w_email = NA_character_,
         stringsAsFactors = FALSE
     )
-    expect_equal(getEmptyRow(context_default), expectation)
+    expect_equal(getNARow(context_default), expectation)
 })
 
 
-test_that("getEmptyRow() stops with non-character tbl_name", {
+test_that("getNARow() stops with non-character tbl_name", {
     
-    expect_error(getEmptyRow(context_default, 1))
-    expect_error(getEmptyRow(context_default, NA))
-    expect_error(getEmptyRow(context_default, NULL))
+    expect_error(getNARow(context_default, 1))
+    expect_error(getNARow(context_default, NA))
+    expect_error(getNARow(context_default, NULL))
 })
 
 
-test_that("getEmptyRow() stops with non-valid tbl_name", {
+test_that("getNARow() stops with non-valid tbl_name", {
     
-    expect_error(getEmptyRow(context_default, "name"))
-    expect_error(getEmptyRow(context_default, NA_character_))
-    expect_error(getEmptyRow(context_default, character()))
+    expect_error(getNARow(context_default, "name"))
+    expect_error(getNARow(context_default, NA_character_))
+    expect_error(getNARow(context_default, character()))
 })
 
 

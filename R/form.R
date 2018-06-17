@@ -152,7 +152,7 @@ validateForm <- function(input_lst, .context) {
     names(input_lst) <- gsub(pattern, "", names(input_lst))
     
     # get an empty row, which has the right R classes
-    empty_row_df <- getEmptyRow(.context)
+    empty_row_df <- getNARow(.context)
     row_df <- empty_row_df
     msg <- NULL
     tryCatch({

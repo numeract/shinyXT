@@ -73,7 +73,7 @@ getFilteredTbl <- function(.context, tbl_name = .context$tbl_name) {
 #' @return A data frame, preserving column classes
 #' 
 #' @export
-getEmptyRow <- function(.context, tbl_name = .context$tbl_name) {
+getNARow <- function(.context, tbl_name = .context$tbl_name) {
     
     if (!is.character(tbl_name)) stop("`tbl_name` should be character")
     

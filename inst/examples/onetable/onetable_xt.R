@@ -13,7 +13,7 @@ xt_row <- function(tbl, xt, .context) {
         # pick row from filtered tbl
         row_df <- dplyr::slice(tbl, .context$row_idx)
     } else {
-        row_df <- getEmptyRow(.context)
+        row_df <- getNARow(.context)
     }
     
     # update dttm field to display the most recent value to the user
