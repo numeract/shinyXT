@@ -65,26 +65,36 @@ getFilteredTbl <- function(.context, tbl_name = .context$tbl_name) {
 }
 
 
-#' Get an Empty Row
-#' 
-#' Returns a one row data frame of NA's.
+#' Returns an one row data frame filled with NAs
 #' 
 #' @param .context List. The shinyXT context.
 #' @param tbl_name Name of the requested table.
 #' 
+#' @return A data frame, preserving column classes
+#' 
 #' @export
 getEmptyRow <- function(.context, tbl_name = .context$tbl_name) {
     
-    if (!is.character(tbl_name)) stop("tbl_name should be character")
-    # returns an one row df filled with NAs, preserving R classes
+    if (!is.character(tbl_name)) stop("`tbl_name` should be character")
+    
     .context$tbl_lst[[tbl_name]] %>%
         dplyr::slice(1:2) %>%
         tibble::add_row(.before = 1L) %>%
         dplyr::slice(1L)
 }
 
-# TODO: doc (Mike)
 
+#' Creates a "choices" vector for \code{shiny::selectizeInput()} 
+#' 
+#' @param var_col Name of the column to extract unique values
+#' @param .context List. The shinyXT context.
+#' @param tbl_name Name of the requested table.
+#' @param keep_na How to handle missing values: \code{"if_any"} (default) 
+#'   keeps \code{NAs}, \code{"omit_na"} drops \code{NAs}, 
+#'   \code{"insert_na"} makes sure \code{NA} is the first value.
+#' 
+#' @return A character vector
+#' 
 #' @export
 choices <- function(var_col,
                     .context,

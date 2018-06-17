@@ -22,7 +22,7 @@ jsDT <- function(script_name = c("4col")) {
 #' @param dt Data table.
 #' @param xt Config mode from context.
 #' 
-#' @seealso \code{\link{validateDT}}
+#' @seealso \code{\link{createDT}}
 #' 
 #' @examples
 #' xt <- getConfigMode(.context)
@@ -131,7 +131,7 @@ formatDT <- function(dt, xt) {
 #' 
 #' Creates a DT based on the settings specified in the context.
 #' 
-#' @seealso \code{\link{createDT}}
+#' @seealso \code{\link{formatDT}}
 #' 
 #' @export
 createDT <- function(.context) {
