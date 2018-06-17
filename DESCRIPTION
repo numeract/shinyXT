@@ -32,4 +32,5 @@ Imports:
 Suggests:
     lubridate,
     shinytest,
-    testthat
+    testthat,
+    covr
