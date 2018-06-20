@@ -6,6 +6,9 @@
 \usage{
 jsDT(script_name = c("4col"))
 }
+\value{
+A string representing a JS script
+}
 \description{
 Adds JS scripts to be used with Data Table calls.
 }

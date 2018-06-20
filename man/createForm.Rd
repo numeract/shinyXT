@@ -9,11 +9,13 @@ createForm(.context)
 \arguments{
 \item{.context}{List. The shinyXT context.}
 }
+\value{
+A HTML tag object.
+}
 \description{
-Creates the form that allows you to add a new record to your table,
- based on the setting in your context.
+Creates the form that allows the addition of a new record to the table,
+ based on the context settings.
 }
 \seealso{
 Other form functions: \code{\link{validateForm}}
 }
-\concept{form functions}

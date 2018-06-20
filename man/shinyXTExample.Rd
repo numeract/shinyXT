@@ -2,14 +2,14 @@
 % Please edit documentation in R/example.R
 \name{shinyXTExample}
 \alias{shinyXTExample}
-\title{Create and Run a shinyXT Example}
+\title{Create and run a shinyXT example}
 \usage{
 shinyXTExample(example_name = "onetable")
 }
 \arguments{
-\item{example_name}{String that points to the name of the example.}
+\item{example_name}{String that represents name of the example.}
 }
 \description{
-It builds and runs the specified shinyXT example, based on the configuration
+Builds and runs the specified shinyXT example, based on the configuration
  files found in the same folder.
 }

@@ -6,6 +6,9 @@
 \usage{
 brXT()
 }
+\value{
+A list with line break settings
+}
 \description{
 Add a HTML Line Break.
 }

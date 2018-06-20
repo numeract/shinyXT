@@ -2,7 +2,8 @@
 
 xt_pre_dt <- function(tbl, xt, .context) {
     
-    tibble::add_column(tbl, a2_num = tbl$a0_num, .after = "a0_num")
+    tibble::add_column(
+        tbl, a2_num = tbl$a0_num, .after = "a0_num")
 }
 
 
@@ -15,7 +16,6 @@ xt_row <- function(tbl, xt, .context) {
     } else {
         row_df <- getNARow(.context)
     }
-    
     # update dttm field to display the most recent value to the user
     row_df[["e_dttm"]] <- lubridate::now("UTC")
     
@@ -32,7 +32,6 @@ xt_pre_validate <- function(input_lst, .context) {
 xt_validate_not_missing <- function(x) {
     
     if (!isNotEmptyChr(x)) return("value is missing")
-    
     # return NULL if successful
     NULL
 }
@@ -41,7 +40,6 @@ xt_validate_not_missing <- function(x) {
 xt_validate_edit <- function(row_df, .context) {
     
     if (row_df$a0_num > 9) return("a0_num should be less than or equal to 9")
-    
     # return NULL if successful
     NULL
 }

@@ -15,28 +15,33 @@ context_default <- list(
 )
 
 test_that("getFullTbl() works", {
-    expect_equal(getFullTbl(context_default),
-                 context_default$tbl_lst[[context_default$tbl_name]])
+    expect_equal(
+        getFullTbl(context_default),
+        context_default$tbl_lst[[context_default$tbl_name]])
 })
 
 
 test_that("getFullTbl() stops with wrong tbl_name", {
     
-    expect_error(getFullTbl(context_default, tbl_name = "name"))
+    expect_error(
+        getFullTbl(context_default, tbl_name = "name"))
 })
 
 
 test_that("getFullTbl() stops with numeric tbl_name", {
     
-    expect_error(getFullTbl(context_default, tbl_name = 1))
-    expect_error(getFullTbl(context_default, tbl_name = 2))
+    expect_error(
+        getFullTbl(context_default, tbl_name = 1))
+    expect_error(
+        getFullTbl(context_default, tbl_name = 2))
 })
 
 
 test_that("getFilteredTbl() works", {
     
-    expect_equal(getFilteredTbl(context_default),
-                 context_default$tbl_lst[[context_default$tbl_name]])
+    expect_equal(
+        getFilteredTbl(context_default),
+        context_default$tbl_lst[[context_default$tbl_name]])
 })
 
 
@@ -77,13 +82,15 @@ test_that("getNARow() stops with non-valid tbl_name", {
 
 test_that("choices() works", {
      expectation <- LETTERS[1:4]
-     expect_equal(choices("c_chr", context_default), expectation)
+     expect_equal(
+         choices("c_chr", context_default), expectation)
 })
 
 
 test_that("choices() works, with all tables", {
     expectation <- LETTERS[1:4]
-    expect_equal(choices("c_chr", context_default, tbl_name = "all"), expectation)
+    expect_equal(
+        choices("c_chr", context_default, tbl_name = "all"), expectation)
 })
 
 

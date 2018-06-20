@@ -6,6 +6,9 @@
 \usage{
 hrXT()
 }
+\value{
+A list with horizontal row settings
+}
 \description{
 Add a HTML Horizonal Row.
 }

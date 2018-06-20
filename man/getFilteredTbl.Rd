@@ -11,9 +11,12 @@ getFilteredTbl(.context, tbl_name = .context$tbl_name)
 
 \item{tbl_name}{Name of the requested table.}
 }
+\value{
+A filtered table from the contexts' table list and filter list.
+}
 \description{
-Returns a filtered table from the contexts' table list and filter list.
+Get Filtered Table
 }
 \seealso{
-@seealso \code{\link{getFilteredTbl}}
+\code{\link{getFilteredTbl}}
 }

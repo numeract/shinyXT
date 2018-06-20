@@ -18,7 +18,7 @@ A list representing the settings of a specific context mode
 Extracts from second level in xt_lst,
 if it contains only valid modes.
 If any level 2 (only!) field (e.g. validate) is a list of mode fields,
-getConfigMode() will be used to extract only that mode.
+\code{getConfigMode()} will be used to extract only that mode.
 }
 \examples{
 getConfigMode(.context = context, mode = .context$mode)
@@ -28,4 +28,3 @@ getConfigMode(.context = context, mode = .context$mode)
 Other config functions: \code{\link{checkDataConfig}},
   \code{\link{getConfigField}}
 }
-\concept{config functions}

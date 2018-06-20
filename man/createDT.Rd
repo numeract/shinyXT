@@ -6,6 +6,9 @@
 \usage{
 createDT(.context)
 }
+\value{
+A DataTable
+}
 \description{
 Creates a DT based on the settings specified in the context.
 }

@@ -11,8 +11,11 @@ getFullTbl(.context, tbl_name = .context$tbl_name)
 
 \item{tbl_name}{Name of the requested table.}
 }
+\value{
+The table from the contexts' table list.
+}
 \description{
-Returns the table from the contexts' table list.
+Get Entire Table
 }
 \seealso{
 @seealso \code{\link{getFilteredTbl}}

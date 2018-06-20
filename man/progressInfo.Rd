@@ -9,10 +9,10 @@ progressInfo(message, detail = "Begin", max = 10L, shiny_session = NULL,
 }
 \arguments{
 \item{message}{Character, the message to be displayed to the user.
-NULL in order to hide the current message}
+\code{NULL} in order to hide the current message}
 
 \item{detail}{Character, the detail to be displayed to the user. If the user
-is in a shiny session, detail message will be shown with a de-emphasized
+is in a Shiny session, detail message will be shown with a de-emphasized
 appearance relative to message}
 
 \item{max}{Numeric, value that represents the end of the progress bar,
@@ -27,12 +27,8 @@ A list with progress states
 }
 \description{
 Displays progress info taking into account the mode the user is in. If the
- quiet mode is activated, the function call doesn't display anything.
+ \code{quiet} mode is activated, the function call doesn't display anything.
  If the user is in console mode, the progress information is printed on the
- console. If the function is called in a valid shiny session,
+ console. If the function is called in a valid Shiny session,
  a default progress bar shows progress informaion.
 }
-\seealso{
-Other shiny misc functions: \code{\link{downloadButtonWithIcon}}
-}
-\concept{shiny misc functions}

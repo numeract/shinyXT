@@ -18,10 +18,9 @@ works with}
 A character representing the config field
 }
 \description{
-Returns values from an xt field in the order of the tbl columns
+Returns values from an xt field in the order of the \code{tbl} columns
 }
 \seealso{
 Other config functions: \code{\link{checkDataConfig}},
   \code{\link{getConfigMode}}
 }
-\concept{config functions}

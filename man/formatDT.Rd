@@ -7,7 +7,7 @@
 formatDT(dt, xt)
 }
 \arguments{
-\item{dt}{Data table.}
+\item{dt}{A Data Table.}
 
 \item{xt}{Config mode from context.}
 }
@@ -31,4 +31,6 @@ dt <- DT::datatable(
 }
 \seealso{
 \code{\link{createDT}}
+ 
+ @return  the newly formatted DataTable
 }

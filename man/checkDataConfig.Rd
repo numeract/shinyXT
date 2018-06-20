@@ -28,4 +28,3 @@ enough column info for a data table (data frame)
 Other config functions: \code{\link{getConfigField}},
   \code{\link{getConfigMode}}
 }
-\concept{config functions}

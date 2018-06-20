@@ -15,22 +15,27 @@ context_default <- list(
 
 test_that("extract_mode(x, mode, XT) works", {
     
-    x <- list(dt = "dt", edit = "edit", add = "add")
-    expect_equal(extract_mode(x = x, mode = "edit", XT = .XT), "edit")
+    x <- list(
+        dt = "dt", edit = "edit", add = "add")
+    expect_equal(
+        extract_mode(x = x, mode = "edit", XT = .XT), "edit")
 })
 
 
 test_that("extract_mode(x, mode, XT) works without all x names in .XT$valid_mode", {
     
-    x <- list(dt = "dt", edit = "edit", add = "add", additional = "additional")
-    expect_equal(extract_mode(x = x, mode = "edit", XT = .XT), x)
+    x <- list(
+        dt = "dt", edit = "edit", add = "add", additional = "additional")
+    expect_equal(
+        extract_mode(x = x, mode = "edit", XT = .XT), x)
 })
 
 
 test_that("extract_mode(x, mode, XT) works with non-list input", {
     
     x <- c("dt", "edit", "add")
-    expect_equal(extract_mode(x = x, mode = "edit", XT = .XT), x)
+    expect_equal(
+        extract_mode(x = x, mode = "edit", XT = .XT), x)
 })
 
 
@@ -40,7 +45,8 @@ test_that("add_col_default(col_lst, default_lst) works", {
     default_lst <- list(col1 = c(1, 2, 3), col2 = c(4, 5, 6))
     result <- add_col_default(col_lst, default_lst)
     
-    expect_equal(names(result), names(default_lst))
+    expect_equal(
+        names(result), names(default_lst))
 })
 
 

@@ -9,6 +9,9 @@ isNotEmptyChr(x)
 \arguments{
 \item{x}{Input to be checked.}
 }
+\value{
+Logical: TRUE if NOT empty character and FALSE otherwise
+}
 \description{
 Checks if input is NOT empty character.
 }
