@@ -2,6 +2,8 @@
 #' 
 #' Adds JS scripts to be used with Data Table calls.
 #' 
+#' @return A string representing a JS script
+#' 
 #' @export
 jsDT <- function(script_name = c("4col")) {
     
@@ -23,7 +25,8 @@ jsDT <- function(script_name = c("4col")) {
 #' @param xt Config mode from context.
 #' 
 #' @seealso \code{\link{createDT}}
-#' 
+#'  
+#'  @return  the newly formatted DataTable
 #' @examples
 #' xt <- getConfigMode(.context)
 #' dt <- DT::datatable(
@@ -131,6 +134,7 @@ formatDT <- function(dt, xt) {
 #' 
 #' Creates a DT based on the settings specified in the context.
 #' 
+#' @return A DataTable  
 #' @seealso \code{\link{formatDT}}
 #' 
 #' @export

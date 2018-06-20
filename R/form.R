@@ -5,6 +5,7 @@
 #' 
 #' @param .context List. The shinyXT context.
 #' 
+#' @return An HTML tag object.
 #' @family form functions
 #' 
 #' @export
@@ -128,6 +129,7 @@ createForm <- function(.context) {
 #' @param input_lst List of views to validate.
 #' @param .context List. The shinyXT context.
 #' 
+#' @return  A list
 #' @family form functions
 #'
 #' @examples

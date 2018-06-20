@@ -16,9 +16,9 @@
 #' @param shiny_session the shiny session object, provided by shinyServer
 #' @param quiet Logical, whether or not to display progress info
 #' 
-#' @family shiny misc functions
-#' 
 #' @return A list with progress states
+#' 
+#' @family shiny misc functions
 #' 
 #' @export
 progressInfo <- function(message,
@@ -105,9 +105,11 @@ progressInfo <- function(message,
 #'  @param icon  the icon that appears on the button
 #'  @param ... named attributes applied to the button
 #' 
-#' @family shiny misc functions
+#'  @return A HTML tag object which can be also rendered as HTML 
 #' 
-#' @export
+#'  @family shiny misc functions
+#' 
+#'  @export
 downloadButtonWithIcon <- function(outputId,
                                    label = "Download",
                                    class = NULL,
