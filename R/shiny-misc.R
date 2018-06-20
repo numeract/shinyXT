@@ -114,8 +114,7 @@ downloadButtonWithIcon <- function(outputId,
                                    label = "Download",
                                    class = NULL,
                                    icon = shiny::icon("download"),
-                                   ...
-) {
+                                   ...) {
     shiny::tags$a(
         id = outputId,
         class = paste("btn btn-default shiny-download-link", class),

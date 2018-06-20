@@ -15,6 +15,7 @@ jsDT <- function(script_name = c("4col")) {
     js
 }
 
+
 #' Format a Data Table.
 #' 
 #' Formats the DT based on the options specified in the configuration.
@@ -53,7 +54,8 @@ formatDT <- function(dt, xt) {
     
     # .? (rounding)
     for (i in 0:6) {
-        round_cols <- names(purrr::keep(xt, ~ .$format == paste0(".", i)))
+        round_cols <- names(
+            purrr::keep(xt, ~ .$format == paste0(".", i)))
         if (length(round_cols) > 0L) {
             dt <- DT::formatRound(dt, round_cols, digits = i)
         }
@@ -61,7 +63,8 @@ formatDT <- function(dt, xt) {
     
     # %? (percent)
     for (i in 0:6) {
-        pct_cols <- names(purrr::keep(xt, ~ .$format == paste0("%", i)))
+        pct_cols <- names(
+            purrr::keep(xt, ~ .$format == paste0("%", i)))
         if (length(pct_cols) > 0L) {
             dt <- DT::formatPercentage(dt, pct_cols, digits = i)
         }
@@ -103,6 +106,7 @@ formatDT <- function(dt, xt) {
     # align
     column_defs <- dt$x$options$columnDefs
     column_def <- list()
+    
     # convert R/L/C to className
     align <- unname(purrr::map_chr(xt,  ~ .$align %||% ""))
     l_align <- which(align == "L") - 1L
@@ -160,7 +164,8 @@ createDT <- function(.context) {
     }
     # js col idx starts at 0
     hidden_idx <- which(!visible_msk) - 1L
-    column_defs <- list(list(visible = FALSE, targets = hidden_idx))
+    column_defs <- list(
+        list(visible = FALSE, targets = hidden_idx))
     
     options_lst <- list(
         lengthChange = TRUE,

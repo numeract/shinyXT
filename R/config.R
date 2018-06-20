@@ -10,8 +10,8 @@ extract_mode <- function(x, mode, XT) {
 
 
 add_col_default <- function(col_lst, default_lst) {
-    # do not export, separate function to allow testing
     
+    # do not export, separate function to allow testing
     if (!is.list(col_lst)) stop("col_lst must be a list")
     if (!is.list(default_lst)) stop("default_lst must be a list")
     
@@ -29,6 +29,7 @@ add_col_default <- function(col_lst, default_lst) {
     
     col_lst
 }
+
 
 #' Extracts Configuration Mode from Context
 #' 
@@ -52,11 +53,14 @@ getConfigMode <- function(.context, mode = .context$mode) {
     
     xt <- .context$xt_lst[[.context$tbl_name]]
     xt <- xt %>%
-        purrr::map(~ purrr::map(., extract_mode, mode = mode, XT = .XT))
+        purrr::map(
+            ~ purrr::map(., extract_mode, mode = mode, XT = .XT))
     # populate values from .default
     non_dot_idx <- which(!grepl("^\\.", names(xt)))
+    
     xt <- xt %>%
-        purrr::map_at(non_dot_idx, add_col_default, default_lst = xt$.default)
+        purrr::map_at(
+            non_dot_idx, add_col_default, default_lst = xt$.default)
     
     xt
 }
@@ -91,7 +95,6 @@ checkDataConfig <- function(tbl, xt, if_error = stop, ...) {
             msg <- paste("No XT Config field for:", msg)
         }
         if_error(msg, ...)
-        
         # if we do not stop, return FALSE
         FALSE
     } else {

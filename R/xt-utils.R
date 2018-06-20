@@ -59,6 +59,7 @@ getFilteredTbl <- function(.context, tbl_name = .context$tbl_name) {
     
     tbl <- getFullTbl(.context, tbl_name)
     filter_idx <- .context$filter_lst[[tbl_name]]
+    
     # ok if filter is missing/NULL, do not drop any rows
     if (length(filter_idx) > 0L) {
         tbl <- tbl[filter_idx, , drop = FALSE]
