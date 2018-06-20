@@ -1,11 +1,11 @@
 #' Create New Record Form
 #'
-#' Creates the form that allows you to add a new record to your table,
-#'  based on the setting in your context.
+#' Creates the form that allows the addition of a new record to the table,
+#'  based on the context settings.
 #' 
 #' @param .context List. The shinyXT context.
 #' 
-#' @return An HTML tag object.
+#' @return A HTML tag object.
 #' @family form functions
 #' 
 #' @export

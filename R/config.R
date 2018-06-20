@@ -35,7 +35,7 @@ add_col_default <- function(col_lst, default_lst) {
 #' Extracts from second level in xt_lst,
 #' if it contains only valid modes.
 #' If any level 2 (only!) field (e.g. validate) is a list of mode fields,
-#' getConfigMode() will be used to extract only that mode.
+#' \code{getConfigMode()} will be used to extract only that mode.
 #  Valid modes: dt, edit, add.
 #' 
 #' @param .context List. The shinyXT context
@@ -101,7 +101,7 @@ checkDataConfig <- function(tbl, xt, if_error = stop, ...) {
 
 #' Gets the Confinguration Field
 #' 
-#' Returns values from an xt field in the order of the tbl columns
+#' Returns values from an xt field in the order of the \code{tbl} columns
 #' 
 #' @param tbl Data table (data frame) containing the actual data the shiny app
 #'  works with

@@ -1,15 +1,15 @@
 #' Displays the Progress Info
 #' 
 #' Displays progress info taking into account the mode the user is in. If the
-#'  quiet mode is activated, the function call doesn't display anything.
+#'  \code{quiet} mode is activated, the function call doesn't display anything.
 #'  If the user is in console mode, the progress information is printed on the
-#'  console. If the function is called in a valid shiny session,
+#'  console. If the function is called in a valid Shiny session,
 #'  a default progress bar shows progress informaion.
 #' 
 #' @param  message Character, the message to be displayed to the user.
-#'  NULL in order to hide the current message
+#'  \code{NULL} in order to hide the current message
 #' @param detail Character, the detail to be displayed to the user. If the user
-#'  is in a shiny session, detail message will be shown with a de-emphasized
+#'  is in a Shiny session, detail message will be shown with a de-emphasized
 #'  appearance relative to message
 #' @param max Numeric, value that represents the end of the progress bar,
 #'  in case user is in Shiny mode
@@ -22,10 +22,10 @@
 #' 
 #' @export
 progressInfo <- function(message,
-                          detail = "Begin",
-                          max = 10L,
-                          shiny_session = NULL,
-                          quiet = FALSE
+                         detail = "Begin",
+                         max = 10L,
+                         shiny_session = NULL,
+                         quiet = FALSE
 ) {
     max <- as.integer(max)
     
@@ -95,7 +95,7 @@ progressInfo <- function(message,
 #' 
 #' Creates a download button or link which when clicked initiates a
 #'  browser download. It allows the user to customize the button by
-#'  adding an icon to it. It has a corresponding downloadHandler
+#'  adding an icon to it. It has a corresponding \code{downloadHandler}
 #'  in the server function.
 #' 
 #'  @param outputId Character, the name of the output slot to which the

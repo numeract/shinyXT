@@ -1,11 +1,11 @@
 # based on https://deanattali.com/2015/04/21/r-package-shiny-app/
 
-#' Create and Run a shinyXT Example
+#' Create and run a shinyXT example
 #' 
-#' It builds and runs the specified shinyXT example, based on the configuration
+#' Builds and runs the specified shinyXT example, based on the configuration
 #'  files found in the same folder.
 #' 
-#' @param example_name String that points to the name of the example.
+#' @param example_name String that represents name of the example.
 #' 
 #' @export
 shinyXTExample <- function(example_name = "onetable") {

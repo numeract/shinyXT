@@ -12,8 +12,6 @@ jsDT <- function(script_name = c("4col")) {
     js <- if (script_name == "4col") {
         .XT$jsdt_4col
     }
-    
-    # min js by removing extra spaces?
     js
 }
 
@@ -21,7 +19,7 @@ jsDT <- function(script_name = c("4col")) {
 #' 
 #' Formats the DT based on the options specified in the configuration.
 #' 
-#' @param dt Data table.
+#' @param dt A Data Table.
 #' @param xt Config mode from context.
 #' 
 #' @seealso \code{\link{createDT}}
