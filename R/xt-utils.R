@@ -1,4 +1,4 @@
-#' Add a HTML Line Break.
+#' Add an HTML Line Break.
 #' 
 #' @return A list with line break settings
 #' 
@@ -11,7 +11,7 @@ brXT <- function() {
 }
 
 
-#' Add a HTML Horizonal Row.
+#' Add an HTML Horizonal Row.
 #' 
 #' @return A list with horizontal row settings
 #' 
@@ -51,7 +51,6 @@ getFullTbl <- function(.context, tbl_name = .context$tbl_name) {
 #' @param tbl_name Name of the requested table.
 #' 
 #' @return A filtered table from the contexts' table list and filter list.
-#'  
 #' @seealso \code{\link{getFilteredTbl}}
 #' 
 #' @export

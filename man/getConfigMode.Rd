@@ -28,3 +28,4 @@ getConfigMode(.context = context, mode = .context$mode)
 Other config functions: \code{\link{checkDataConfig}},
   \code{\link{getConfigField}}
 }
+\concept{config functions}

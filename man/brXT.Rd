@@ -2,7 +2,7 @@
 % Please edit documentation in R/xt-utils.R
 \name{brXT}
 \alias{brXT}
-\title{Add a HTML Line Break.}
+\title{Add an HTML Line Break.}
 \usage{
 brXT()
 }
@@ -10,5 +10,5 @@ brXT()
 A list with line break settings
 }
 \description{
-Add a HTML Line Break.
+Add an HTML Line Break.
 }

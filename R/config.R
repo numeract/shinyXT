@@ -43,7 +43,6 @@ add_col_default <- function(col_lst, default_lst) {
 #' @param mode The name of the config mode belonging to the context
 #' 
 #' @return A list representing the settings of a specific context mode
-#' 
 #' @family config functions
 #' 
 #' @examples getConfigMode(.context = context, mode = .context$mode)
@@ -71,10 +70,10 @@ getConfigMode <- function(.context, mode = .context$mode) {
 #' enough column info for a data table (data frame)
 #' 
 #' @param tbl Data table (data frame) containing the actual data the shiny app
-#' works with
+#'   works with
 #' @param xt A list representing the settings of a specific context mode
 #' @param if_error  Function that accepts a message
-#' e.g. cat, message, warning, stop
+#'   e.g. cat, message, warning, stop
 #' @param ... Arguments in ... will be passed to if_error()
 #' 
 #' @return Logical. TRUE if XT config contains the nacessary info for tbl
@@ -107,13 +106,11 @@ checkDataConfig <- function(tbl, xt, if_error = stop, ...) {
 #' Returns values from an xt field in the order of the \code{tbl} columns
 #' 
 #' @param tbl Data table (data frame) containing the actual data the shiny app
-#'  works with
+#'   works with
 #' @param xt A list representing the settings of a specific context mode
-#' 
 #' @param field_name A character representing the config field
 #' 
 #' @return A character representing the config field
-#' 
 #' @family config functions
 #' 
 #' @export

@@ -27,8 +27,8 @@ A list with progress states
 }
 \description{
 Displays progress info taking into account the mode the user is in. If the
- \code{quiet} mode is activated, the function call doesn't display anything.
- If the user is in console mode, the progress information is printed on the
- console. If the function is called in a valid Shiny session,
- a default progress bar shows progress informaion.
+  \code{quiet} mode is activated, the function call doesn't display anything.
+  If the user is in console mode, the progress information is printed on the
+  console. If the function is called in a valid Shiny session,
+  a default progress bar shows progress informaion.
 }

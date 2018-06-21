@@ -24,3 +24,4 @@ Returns values from an xt field in the order of the \code{tbl} columns
 Other config functions: \code{\link{checkDataConfig}},
   \code{\link{getConfigMode}}
 }
+\concept{config functions}

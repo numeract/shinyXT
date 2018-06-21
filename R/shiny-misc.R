@@ -1,24 +1,22 @@
 #' Displays the Progress Info
 #' 
 #' Displays progress info taking into account the mode the user is in. If the
-#'  \code{quiet} mode is activated, the function call doesn't display anything.
-#'  If the user is in console mode, the progress information is printed on the
-#'  console. If the function is called in a valid Shiny session,
-#'  a default progress bar shows progress informaion.
+#'   \code{quiet} mode is activated, the function call doesn't display anything.
+#'   If the user is in console mode, the progress information is printed on the
+#'   console. If the function is called in a valid Shiny session,
+#'   a default progress bar shows progress informaion.
 #' 
 #' @param  message Character, the message to be displayed to the user.
 #'  \code{NULL} in order to hide the current message
 #' @param detail Character, the detail to be displayed to the user. If the user
-#'  is in a Shiny session, detail message will be shown with a de-emphasized
-#'  appearance relative to message
+#'   is in a Shiny session, detail message will be shown with a de-emphasized
+#'   appearance relative to message
 #' @param max Numeric, value that represents the end of the progress bar,
-#'  in case user is in Shiny mode
+#'   in case user is in Shiny mode
 #' @param shiny_session the shiny session object, provided by shinyServer
 #' @param quiet Logical, whether or not to display progress info
 #' 
 #' @return A list with progress states
-#' 
-#' @family shiny misc functions
 #' 
 #' @export
 progressInfo <- function(message,
@@ -98,18 +96,16 @@ progressInfo <- function(message,
 #'  adding an icon to it. It has a corresponding \code{downloadHandler}
 #'  in the server function.
 #' 
-#'  @param outputId Character, the name of the output slot to which the
+#' @param outputId Character, the name of the output slot to which the
 #'   corresponding downloadHandler is assigned.
-#'  @param label the label that appears on the button
-#'  @param class additional CSS classes
-#'  @param icon  the icon that appears on the button
-#'  @param ... named attributes applied to the button
+#' @param label the label that appears on the button
+#' @param class additional CSS classes
+#' @param icon  the icon that appears on the button
+#' @param ... named attributes applied to the button
 #' 
-#'  @return A HTML tag object which can be also rendered as HTML 
+#' @return An HTML tag object which can be also rendered as HTML 
 #' 
-#'  @family shiny misc functions
-#' 
-#'  @export
+#' @export
 downloadButtonWithIcon <- function(outputId,
                                    label = "Download",
                                    class = NULL,

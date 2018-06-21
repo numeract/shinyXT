@@ -29,15 +29,12 @@ is_POSIXct <- function(x) inherits(x, "POSIXct")
 #' Converts Date and POSIXct objects to the format given as input.
 #' 
 #' @param x A Date or POSIXct object to be converted.
-#' 
 #' @param format A character string. The default format is
 #'   "\%Y-\%m-\%d" for Date and "\%Y-\%m-\%d \%H:\%M:\%S" for POSIXct.
-#' 
 #' @param usetz Logical. If TRUE, the time zone abbreviation is
 #'   appended to the output. Applicable only if an POSIXct object.
 #' 
 #' @return A character string representing the formatted date.
-#' 
 #' @seealso \code{\link{format.Date}}, \code{\link{format.POSIXct}}
 #' 
 #' @examples

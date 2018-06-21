@@ -7,23 +7,24 @@
 downloadButtonWithIcon(outputId, label = "Download", class = NULL,
   icon = shiny::icon("download"), ...)
 }
+\arguments{
+\item{outputId}{Character, the name of the output slot to which the
+corresponding downloadHandler is assigned.}
+
+\item{label}{the label that appears on the button}
+
+\item{class}{additional CSS classes}
+
+\item{icon}{the icon that appears on the button}
+
+\item{...}{named attributes applied to the button}
+}
+\value{
+An HTML tag object which can be also rendered as HTML
+}
 \description{
 Creates a download button or link which when clicked initiates a
  browser download. It allows the user to customize the button by
  adding an icon to it. It has a corresponding \code{downloadHandler}
  in the server function.
-}
-\details{
-@param outputId Character, the name of the output slot to which the
-  corresponding downloadHandler is assigned.
- @param label the label that appears on the button
- @param class additional CSS classes
- @param icon  the icon that appears on the button
- @param ... named attributes applied to the button
-
-@return A HTML tag object which can be also rendered as HTML
-
-@family shiny misc functions
-
-@export
 }

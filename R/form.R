@@ -1,11 +1,11 @@
 #' Create New Record Form
 #'
 #' Creates the form that allows the addition of a new record to the table,
-#'  based on the context settings.
+#'   based on the context settings.
 #' 
 #' @param .context List. The shinyXT context.
 #' 
-#' @return A HTML tag object.
+#' @return An HTML tag object.
 #' @family form functions
 #' 
 #' @export
@@ -125,12 +125,12 @@ createForm <- function(.context) {
 #' Validate Form Based on a List of Input Views
 #' 
 #' Called when the user inserts values in the form and the input requires
-#'  validation, based on the rules specified in the shinyXT context.
+#'   validation, based on the rules specified in the shinyXT context.
 #' 
 #' @param input_lst List of views to validate.
 #' @param .context List. The shinyXT context.
 #' 
-#' @return  A list
+#' @return A list
 #' @family form functions
 #'
 #' @examples

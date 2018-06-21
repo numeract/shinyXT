@@ -11,9 +11,12 @@ validateForm(input_lst, .context)
 
 \item{.context}{List. The shinyXT context.}
 }
+\value{
+A list
+}
 \description{
 Called when the user inserts values in the form and the input requires
- validation, based on the rules specified in the shinyXT context.
+  validation, based on the rules specified in the shinyXT context.
 }
 \examples{
 observeEvent({
