@@ -1,7 +1,7 @@
 #' Add JS scripts
 #' 
 #' Adds JS scripts to be used with Data Table calls.
-#' 
+#' @param script_name the name of the script 
 #' @return A string representing a JS script
 #' 
 #' @export
