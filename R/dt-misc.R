@@ -27,10 +27,16 @@ jsDT <- function(script_name = c("4col")) {
 #'  
 #'  @return  the newly formatted DataTable
 #' @examples
+#' .context <- list(tbl_name = "onetable",
+#'              mode = NULL,
+#'              xt_lst = list(
+#'              onetable = list(.XT =  list())))
 #' xt <- getConfigMode(.context)
+#' 
 #' dt <- DT::datatable(
-#'     df,
-#'     options = options_lst,
+#'     df = data.frame(), 
+#'     options = list(format_Date = quote(format_utc),
+#'                    format_POSIXct = quote(format_utc)),
 #'     selection = .options$selection %||% 'single',
 #'     rownames = FALSE,
 #'     extensions = extensions,
@@ -135,6 +141,8 @@ formatDT <- function(dt, xt) {
 #' Create a Data Table.
 #' 
 #' Creates a DT based on the settings specified in the context.
+#' 
+#' @param .context List. The shinyXT context.
 #' 
 #' @return A DataTable  
 #' @seealso \code{\link{formatDT}}
