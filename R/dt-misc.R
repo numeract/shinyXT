@@ -25,18 +25,19 @@ jsDT <- function(script_name = c("4col")) {
 #' 
 #' @seealso \code{\link{createDT}}
 #'  
-#'  @return  the newly formatted DataTable
+#' @return  the newly formatted DataTable
 #' @examples
 #' .XT <- list(
-#' valid_mode = c("dt", "edit", "add"),
-#' valid_class = c("numeric", "integer", "character",
-#'                "Date", "POSIXct"),
-#' .default = list(),
-#' .options = list())
-#' .context <- list(tbl_name = "onetable",
-#'              mode = "edit",
-#'              xt_lst = list(
-#'              onetable = list(.XT = .XT)))
+#'     valid_mode = c("dt", "edit", "add"),
+#'     valid_class = c("numeric", "integer", "character", "Date", "POSIXct"),
+#'     .default = list(),
+#'     .options = list()
+#' )
+#' .context <- list(
+#'     tbl_name = "onetable",
+#'     mode = "edit",
+#'     xt_lst = list(onetable = list(.XT = .XT))
+#' )
 #' xt <- getConfigMode(.context)
 #' 
 #' dt <- DT::datatable(
