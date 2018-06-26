@@ -27,25 +27,30 @@ jsDT <- function(script_name = c("4col")) {
 #'  
 #'  @return  the newly formatted DataTable
 #' @examples
+#' .XT <- list(
+#' valid_mode = c("dt", "edit", "add"),
+#' valid_class = c("numeric", "integer", "character",
+#'                "Date", "POSIXct"),
+#' .default = list(),
+#' .options = list())
 #' .context <- list(tbl_name = "onetable",
-#'              mode = NULL,
+#'              mode = "edit",
 #'              xt_lst = list(
-#'              onetable = list(.XT =  list())))
+#'              onetable = list(.XT = .XT)))
 #' xt <- getConfigMode(.context)
 #' 
 #' dt <- DT::datatable(
-#'     df = data.frame(), 
+#'     data = data.frame(date = as.Date("2018/06/03")),
 #'     options = list(format_Date = quote(format_utc),
 #'                    format_POSIXct = quote(format_utc)),
-#'     selection = .options$selection %||% 'single',
+#'     selection = 'single',
 #'     rownames = FALSE,
-#'     extensions = extensions,
+#'     extensions = "Buttons",
 #'     colnames = getConfigField(df, xt, 'ui_name'),
-#'     filter = .options$filter %||% 'none',
-#'     escape = -skip_escape_idx
+#'     filter = 'none',
+#'     escape = -1
 #'  ) %>%
-#'     formatDT(xt0)
-#' 
+#'     formatDT(xt)
 #' @export
 formatDT <- function(dt, xt) {
     

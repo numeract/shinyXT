@@ -46,7 +46,7 @@ add_col_default <- function(col_lst, default_lst) {
 #' 
 #' @family config functions
 #' 
-#' @example
+#' @examples
 #' context_default <- list(
 #'                    tbl_name = "onetable",
 #'                    mode = NULL,
