@@ -134,10 +134,10 @@ createForm <- function(.context) {
 #' @family form functions
 #'
 #' @examples
-#' observeEvent({
+#' shiny::observeEvent({
 #'     input$my_input
 #' }, {
-#'     reactiveValuesToList(input) # get all the inputs on the page
+#'     shiny::reactiveValuesToList(input) # get all the inputs on the page
 #'     vld_lst <- validateForm(input_lst, .context)
 #' })
 #' 
