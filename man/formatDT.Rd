@@ -11,26 +11,39 @@ formatDT(dt, xt)
 
 \item{xt}{Config mode from context.}
 }
+\value{
+the newly formatted DataTable
+}
 \description{
 Formats the DT based on the options specified in the configuration.
 }
 \examples{
+.XT <- list(
+    valid_mode = c("dt", "edit", "add"),
+    valid_class = c("numeric", "integer", "character", "Date", "POSIXct"),
+    .default = list(),
+    .options = list()
+)
+.context <- list(
+    tbl_name = "onetable",
+    mode = "edit",
+    xt_lst = list(onetable = list(.XT = .XT))
+)
 xt <- getConfigMode(.context)
-dt <- DT::datatable(
-    df,
-    options = options_lst,
-    selection = .options$selection \%||\% 'single',
-    rownames = FALSE,
-    extensions = extensions,
-    colnames = getConfigField(df, xt, 'ui_name'),
-    filter = .options$filter \%||\% 'none',
-    escape = -skip_escape_idx
- ) \%>\%
-    formatDT(xt0)
 
+dt <- DT::datatable(
+    data = data.frame(date = as.Date("2018/06/03")),
+    options = list(format_Date = quote(format_utc),
+                   format_POSIXct = quote(format_utc)),
+    selection = 'single',
+    rownames = FALSE,
+    extensions = "Buttons",
+    colnames = getConfigField(df, xt, 'ui_name'),
+    filter = 'none',
+    escape = -1
+ ) \%>\%
+    formatDT(xt)
 }
 \seealso{
 \code{\link{createDT}}
- 
- @return  the newly formatted DataTable
 }

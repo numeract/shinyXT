@@ -6,6 +6,9 @@
 \usage{
 createDT(.context)
 }
+\arguments{
+\item{.context}{List. The shinyXT context.}
+}
 \value{
 A DataTable
 }

@@ -19,10 +19,10 @@ Called when the user inserts values in the form and the input requires
   validation, based on the rules specified in the shinyXT context.
 }
 \examples{
-observeEvent({
+shiny::observeEvent({
     input$my_input
 }, {
-    reactiveValuesToList(input) # get all the inputs on the page
+    shiny::reactiveValuesToList(input) # get all the inputs on the page
     vld_lst <- validateForm(input_lst, .context)
 })
 

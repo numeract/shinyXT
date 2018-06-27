@@ -21,7 +21,12 @@ If any level 2 (only!) field (e.g. validate) is a list of mode fields,
 \code{getConfigMode()} will be used to extract only that mode.
 }
 \examples{
-getConfigMode(.context = context, mode = .context$mode)
+context_default <- list(
+                   tbl_name = "onetable",
+                   mode = NULL,
+                   xt_lst = list(
+                   onetable = list(.XT =  list())))
+getConfigMode(.context = context_default, mode = .context$mode)
 
 }
 \seealso{

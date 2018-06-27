@@ -6,6 +6,9 @@
 \usage{
 jsDT(script_name = c("4col"))
 }
+\arguments{
+\item{script_name}{the name of the script}
+}
 \value{
 A string representing a JS script
 }
