@@ -62,7 +62,7 @@ formatDT <- function(dt, xt) {
     
     # assumed called after checkDataConfig(), usually from createDT(),
     col_names <- colnames(dt$x$data)
-    xt <- xt[col_names]
+    xt <- xt[[col_names]]
     
     # .? (rounding)
     for (i in 0:6) {
