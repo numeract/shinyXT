@@ -27,30 +27,56 @@ jsDT <- function(script_name = c("4col")) {
 #'  
 #' @return  the newly formatted DataTable
 #' @examples
-#' onetable_df = data.frame( d_date = as.Date(
-#'     c("2018-01-01", "2018-01-02", "2018-01-03", "2018-01-04")),
-#'     e_dttm = as.POSIXct(
-#'    c("2018-01-01 01:00:00", "2018-01-01 02:00:00",
-#'      "2018-01-01 03:00:00", "2018-01-01 04:00:00"), tz = "UTC"))
-#'      
-#' .XT <- list(
-#'     valid_mode = c("dt", "edit", "add"),
-#'     valid_class = c("numeric", "integer", "character", "Date", "POSIXct"),
-#'     .default = list(),
-#'     .options = list()
+#' onetable_df <- data.frame(
+#'     a0_num = c(1, 2, 3, 4)
 #' )
-#' .context <- list(
+#' 
+#' onetable_xt <- list(
+#'     
+#'     .default = list(
+#'         col_name = NA_character_,
+#'         class = NA_character_,
+#'         ui_name = NA_character_,
+#'         hover = NULL,
+#'         widget = NULL,
+#'         format = NULL,
+#'         column_width = 3,   
+#'         width = "100%", 
+#'         visible = TRUE,
+#'         enabled = TRUE,
+#'         validate = NULL
+#'     ),
+#'     
+#'     .options = list(),
+#'     a0_num = list(
+#'         col_name = "a0_num",
+#'         class = "numeric",
+#'         ui_name = "Col A0",
+#'         hover = "Numeric, no decimals",
+#'         widget = "numericInput",
+#'         format = "",
+#'         validate = NULL
+#'     )
+#' )
+#' 
+#' 
+#' context_default <- list(
 #'     tbl_name = "onetable",
 #'     tbl_lst = list(
-#'     onetable = onetable_df),
-#'     filter_lst = NULL
+#'         onetable = onetable_df
+#'     ),
+#'     filter_lst = NULL,
 #'     mode = "dt",
-#'     xt_lst = list(onetable = .XT)
+#'     xt_lst = list(
+#'         onetable = onetable_xt
+#'     )
 #' )
-#' xt <- getConfigMode(.context)
 #' 
-#' dt <- createDT(.context) %>%
-#'     formatDT(xt)
+#' xt <- shinyXT::getConfigMode(context_default)
+#' 
+#' dt <- shinyXT::createDT(context_default) %>%
+#'     shinyXT::formatDT(xt = xt)
+#'     
 #' @export
 formatDT <- function(dt, xt) {
     
@@ -151,6 +177,56 @@ formatDT <- function(dt, xt) {
 #' 
 #' @return A DataTable  
 #' @seealso \code{\link{formatDT}}
+#' 
+#' @examples 
+#' onetable_df <- data.frame(
+#'     a0_num = c(1, 2, 3, 4)
+#' )
+#' 
+#' onetable_xt <- list(
+#'     
+#'     .default = list(
+#'         col_name = NA_character_,
+#'         class = NA_character_,
+#'         ui_name = NA_character_,
+#'         hover = NULL,
+#'         widget = NULL,
+#'         format = NULL,
+#'         column_width = 3,   
+#'         width = "100%", 
+#'         visible = TRUE,
+#'         enabled = TRUE,
+#'         validate = NULL
+#'     ),
+#'     
+#'     .options = list(),
+#'     a0_num = list(
+#'         col_name = "a0_num",
+#'         class = "numeric",
+#'         ui_name = "Col A0",
+#'         hover = "Numeric, no decimals",
+#'         widget = "numericInput",
+#'         format = "",
+#'         validate = NULL
+#'     )
+#' )
+#' 
+#' 
+#' context_default <- list(
+#'     tbl_name = "onetable",
+#'     tbl_lst = list(
+#'         onetable = onetable_df
+#'     ),
+#'     filter_lst = NULL,
+#'     mode = "dt",
+#'     xt_lst = list(
+#'         onetable = onetable_xt
+#'     )
+#' )
+#' 
+#' xt <- shinyXT::getConfigMode(context_default)
+#' 
+#' dt <- shinyXT::createDT(context_default)
 #' 
 #' @export
 createDT <- function(.context) {

@@ -18,31 +18,56 @@ the newly formatted DataTable
 Formats the DT based on the options specified in the configuration.
 }
 \examples{
-.XT <- list(
-    valid_mode = c("dt", "edit", "add"),
-    valid_class = c("numeric", "integer", "character", "Date", "POSIXct"),
-    .default = list(),
-    .options = list()
+onetable_df <- data.frame(
+    a0_num = c(1, 2, 3, 4)
 )
-.context <- list(
-    tbl_name = "onetable",
-    mode = "edit",
-    xt_lst = list(onetable = list(.XT = .XT))
-)
-xt <- getConfigMode(.context)
 
-dt <- DT::datatable(
-    data = data.frame(date = as.Date("2018/06/03")),
-    options = list(format_Date = quote(format_utc),
-                   format_POSIXct = quote(format_utc)),
-    selection = 'single',
-    rownames = FALSE,
-    extensions = "Buttons",
-    colnames = getConfigField(df, xt, 'ui_name'),
-    filter = 'none',
-    escape = -1
- ) \%>\%
-    formatDT(xt)
+onetable_xt <- list(
+    
+    .default = list(
+        col_name = NA_character_,
+        class = NA_character_,
+        ui_name = NA_character_,
+        hover = NULL,
+        widget = NULL,
+        format = NULL,
+        column_width = 3,   
+        width = "100\%", 
+        visible = TRUE,
+        enabled = TRUE,
+        validate = NULL
+    ),
+    
+    .options = list(),
+    a0_num = list(
+        col_name = "a0_num",
+        class = "numeric",
+        ui_name = "Col A0",
+        hover = "Numeric, no decimals",
+        widget = "numericInput",
+        format = "",
+        validate = NULL
+    )
+)
+
+
+context_default <- list(
+    tbl_name = "onetable",
+    tbl_lst = list(
+        onetable = onetable_df
+    ),
+    filter_lst = NULL,
+    mode = "dt",
+    xt_lst = list(
+        onetable = onetable_xt
+    )
+)
+
+xt <- shinyXT::getConfigMode(context_default)
+
+dt <- shinyXT::createDT(context_default) \%>\%
+    shinyXT::formatDT(xt = xt)
+    
 }
 \seealso{
 \code{\link{createDT}}
