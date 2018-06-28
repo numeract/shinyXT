@@ -27,6 +27,12 @@ jsDT <- function(script_name = c("4col")) {
 #'  
 #' @return  the newly formatted DataTable
 #' @examples
+#' onetable_df = data.frame( d_date = as.Date(
+#'     c("2018-01-01", "2018-01-02", "2018-01-03", "2018-01-04")),
+#'     e_dttm = as.POSIXct(
+#'    c("2018-01-01 01:00:00", "2018-01-01 02:00:00",
+#'      "2018-01-01 03:00:00", "2018-01-01 04:00:00"), tz = "UTC"))
+#'      
 #' .XT <- list(
 #'     valid_mode = c("dt", "edit", "add"),
 #'     valid_class = c("numeric", "integer", "character", "Date", "POSIXct"),
@@ -35,22 +41,15 @@ jsDT <- function(script_name = c("4col")) {
 #' )
 #' .context <- list(
 #'     tbl_name = "onetable",
-#'     mode = "edit",
-#'     xt_lst = list(onetable = list(.XT = .XT))
+#'     tbl_lst = list(
+#'     onetable = onetable_df),
+#'     filter_lst = NULL
+#'     mode = "dt",
+#'     xt_lst = list(onetable = .XT)
 #' )
 #' xt <- getConfigMode(.context)
 #' 
-#' dt <- DT::datatable(
-#'     data = data.frame(date = as.Date("2018/06/03")),
-#'     options = list(format_Date = quote(format_utc),
-#'                    format_POSIXct = quote(format_utc)),
-#'     selection = 'single',
-#'     rownames = FALSE,
-#'     extensions = "Buttons",
-#'     colnames = getConfigField(df, xt, 'ui_name'),
-#'     filter = 'none',
-#'     escape = -1
-#'  ) %>%
+#' dt <- createDT(.context) %>%
 #'     formatDT(xt)
 #' @export
 formatDT <- function(dt, xt) {
@@ -62,7 +61,7 @@ formatDT <- function(dt, xt) {
     
     # assumed called after checkDataConfig(), usually from createDT(),
     col_names <- colnames(dt$x$data)
-    xt <- xt[[col_names]]
+    xt <- xt[col_names]
     
     # .? (rounding)
     for (i in 0:6) {
