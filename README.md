@@ -7,11 +7,20 @@ changes while the API stabilizes.**
 
 ## Motivation
 
-   The package allows the configuration and formatting of Shiny DataTable and Form 
+The package allows the configuration and formatting of Shiny DataTable and Form 
 templates that are meant to be re-used, as well as other Shiny functionalities.
-   The functions that receive custom settings and use them in order to create DataTable templates 
-work like a Factory design pattern.The table is constructed without exposing the creation logic each time the template 
+The functions that receive custom settings and use them in order to create DataTable templates 
+work like a Factory design pattern. The table is constructed without exposing the creation logic each time the template 
 is applied and a common interface (context) can be used in order to render multiple DataTable objects.
+
+The main advantages of using shinyXT for creating and formatting DataTable objects are:
+
+- Flexibility: if the user wants to change a feature of the DataTable objects, is enough to modify the settings
+and the change will be propagated in all DataTable objects that are created with the same settings
+
+- Greater control achieved by using a standard format
+
+- The server code becomes much shorter
 
 ## Installation
 
