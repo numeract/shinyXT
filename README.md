@@ -22,12 +22,39 @@ and the change will be propagated in all DataTable objects that are created with
 
 - The server code becomes much shorter
 
+
 ## Installation
 
 ```
 # install.packages("devtools")
 devtools::install_github("numeract/shinyXT")
 ```
+
+## Functions
+
+The package is still in development, functions will be updated.
+
+- Configuration mode :
+    + `getConfigMode` : extracts configuration mode from a context
+    + `checkDataConfig` : check XT configuration columns
+    + `getConfigField` : gets the confinguration field
+- DataTable functions:
+    + `jsDT` : adds JS scripts to be used with Data Table calls
+    + `formatDT` : formats a DataTable
+    + `createDT` : creates a DataTable based on custom settings
+- Form utilities:
+    + `createForm`
+    + `validateForm`
+- `Shiny` customized views:
+    + `progressInfo` : displays progress info taking into account the mode the user is in
+    + `downloadButtonWithIcon` : creates a download button with icon
+- `ShinyXT` utils:
+    + `brXT` and `hrXT`
+    + `getFullTbl` and `getFilteredTbl`
+    + `getNARow`
+    + `choices` : creates a "choices" vector for `shiny::selectizeInput` 
+    + `isNotEmptyChr`
+
 
 ## Examples
 
