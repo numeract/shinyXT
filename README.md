@@ -25,15 +25,10 @@ library(shiny)
 library(shinyXT)
 onetable_df <- data.frame(
     a0_num = c(1, 2, 3, 4),
-    b_int = 1:4,
-    c_chr = LETTERS[1:4],
     d_date = as.Date(c("2018-01-01", "2018-01-02", "2018-01-03", "2018-01-04"))
 )
 
 onetable_xt <- list(
-    
-    # .default ----
-    # default fields and values for all columns
     .default = list(
         col_name = NA_character_,
         class = NA_character_,
@@ -41,24 +36,17 @@ onetable_xt <- list(
         hover = NULL,
         widget = NULL,
         format = NULL,
-        column_width = 3,   # width for shiny::column(), 0 for no column
-        width = "100%",     # control width within the column
+        column_width = 3,  
+        width = "100%",     
         visible = TRUE,
         enabled = TRUE,
         validate = NULL
     ),
-    
-    # .options ----
-    # options for the whole table
     .options = list(
-        # functions to convert Date/Time to character
         format_Date = quote(format_utc),
-    
-        # overwrite individual col visibility
-        visible = c("a0_num", "a2_num", "c_chr", "d_date")
+        visible = c("a0_num", "d_date")
     ),
     
-    # a0_num ----
     a0_num = list(
         col_name = "a0_num",
         class = "numeric",
@@ -69,47 +57,6 @@ onetable_xt <- list(
         validate = NULL
     ),
     
-    # a2_num ----
-    a2_num = list(
-        col_name = "a2_num",
-        class = "numeric",
-        ui_name = "Col A2",
-        hover = "Numeric, 2 decimals",
-        widget = list(
-            name = "numericInput",
-            step = 0.01
-        ),
-        format = ".2",
-        visible = FALSE,    # do not show in form
-        validate = NULL
-    ),
-    
-    # b_int ----
-    b_int = list(
-        col_name = "b_int",
-        class = "integer",
-        ui_name = "Col B",
-        hover = "Integer",
-        widget = "numericInput",
-        format = "",
-        validate = NULL
-    ),
-    
-    # c_chr ----
-    c_chr = list(
-        col_name = "c_chr",
-        class = "character",
-        ui_name = "Col C",
-        hover = "Character",
-        widget = list(                  # drop down w/ column values
-            name = "selectizeInput",
-            choices = quote(choices("c_chr", .context))
-        ),
-        format = "",
-        validate = NULL
-    ),
-    
-    # d_date ----
     d_date = list(
         col_name = "d_date",
         class = "Date",
@@ -121,13 +68,12 @@ onetable_xt <- list(
     )
 )
 
-
 ui <- shinyUI(fluidPage( 
     tabPanel(
         title = "View",
         p(),
         DT::dataTableOutput("view_dt"))
-    )
+)
 )
 
 
@@ -146,8 +92,7 @@ server <- shinyServer(function(input, output, session) {
             onetable = onetable_xt
         )
     )
-    
-    # View ----
+
     output$view_dt <- DT::renderDataTable({
         .context <- context_default
         shinyXT::createDT(.context)
