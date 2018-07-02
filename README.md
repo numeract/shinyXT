@@ -18,9 +18,9 @@ templates that are meant to be re-used, as well as other Shiny functionalities.
 devtools::install_github("numeract/shinyXT")
 ```
 
-### Simple Example
+## Examples
 
-## Default example
+### Default Example
 
 ```
 library(shinyXT)
@@ -33,6 +33,8 @@ Output:
 
 ![Example default edit](doc/shinyXT_onetable_edit.PNG)
 
+
+### createDT Example
 
 ```
 library(shiny)
