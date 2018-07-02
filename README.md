@@ -25,7 +25,7 @@ and the change will be propagated in all DataTable objects that are created with
 
 ## Installation
 
-```
+```R
 # install.packages("devtools")
 devtools::install_github("numeract/shinyXT")
 ```
@@ -58,9 +58,12 @@ The package is still in development, functions will be updated.
 
 ## Examples
 
-### Default Example
+### Included Example
 
-```
+The following lines ilustrate how the default shinyXT included example can be run 
+and its output.
+
+```R
 library(shinyXT)
 shinyXT::shinyXTExample()
 
@@ -74,12 +77,17 @@ Output:
 
 ### createDT Example
 
-```
+The following example shows the utility of `createDT` function and the way a context containing custom settings 
+is created and passed to it.
+
+```R
 library(shiny)
 library(shinyXT)
+
 onetable_df <- data.frame(
     a0_num = c(1, 2, 3, 4),
-    d_date = as.Date(c("2018-01-01", "2018-01-02", "2018-01-03", "2018-01-04"))
+    d_date = as.Date(
+        c("2018-01-01", "2018-01-02", "2018-01-03", "2018-01-04"))
 )
 
 onetable_xt <- list(
@@ -94,13 +102,10 @@ onetable_xt <- list(
         width = "100%",     
         visible = TRUE,
         enabled = TRUE,
-        validate = NULL
-    ),
+        validate = NULL),
     .options = list(
         format_Date = quote(format_utc),
-        visible = c("a0_num", "d_date")
-    ),
-    
+        visible = c("a0_num", "d_date")),
     a0_num = list(
         col_name = "a0_num",
         class = "numeric",
@@ -108,9 +113,7 @@ onetable_xt <- list(
         hover = "Numeric, no decimals",
         widget = "numericInput",
         format = "",
-        validate = NULL
-    ),
-    
+        validate = NULL),
     d_date = list(
         col_name = "d_date",
         class = "Date",
@@ -118,23 +121,20 @@ onetable_xt <- list(
         hover = "Date (date only), not missing",
         widget = "dateInput",
         format = "date",
-        validate = NULL
-    )
+        validate = NULL)
 )
+
 
 ui <- shinyUI(fluidPage( 
     tabPanel(
         title = "View",
         p(),
         DT::dataTableOutput("view_dt"))
-)
+    )
 )
 
 
 server <- shinyServer(function(input, output, session) {
-    
-    # Data ----
-    # load data and create default context
     context_default <- list(
         tbl_name = "onetable",
         tbl_lst = list(
@@ -146,7 +146,6 @@ server <- shinyServer(function(input, output, session) {
             onetable = onetable_xt
         )
     )
-
     output$view_dt <- DT::renderDataTable({
         .context <- context_default
         shinyXT::createDT(.context)
@@ -158,5 +157,8 @@ shinyApp(ui, server)
 Output: 
 
 ![Example 1 output](doc/shinyXT_example1.PNG)
+
+## TODO
+Integrate shinyXT with Shiny Modules
 
 
