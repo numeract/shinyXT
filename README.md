@@ -20,6 +20,20 @@ devtools::install_github("numeract/shinyXT")
 
 ### Simple Example
 
+## Default example
+
+```
+library(shinyXT)
+shinyXT::shinyXTExample()
+
+```
+Output:
+
+![Example default view](doc/shinyXT_onetable_view.PNG)
+
+![Example default edit](doc/shinyXT_onetable_edit.PNG)
+
+
 ```
 library(shiny)
 library(shinyXT)
@@ -101,3 +115,8 @@ server <- shinyServer(function(input, output, session) {
 
 shinyApp(ui, server)
 ```
+Output: 
+
+![Example 1 output](doc/shinyXT_example1.PNG)
+
+
