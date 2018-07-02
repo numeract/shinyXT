@@ -101,3 +101,6 @@ server <- shinyServer(function(input, output, session) {
 
 shinyApp(ui, server)
 ```
+
+
+![Example 1 output](doc/shinyXT_example1.PNG)
