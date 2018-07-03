@@ -5,6 +5,7 @@
 **The package is currently under active development, please expect major 
 changes while the API stabilizes.**
 
+
 ## Motivation
 
 The package allows the configuration and formatting of Shiny DataTable and Form 
@@ -37,7 +38,7 @@ The package is still in development, functions will be updated.
 - Configuration mode :
     + `getConfigMode` : extracts configuration mode from a context
     + `checkDataConfig` : check XT configuration columns
-    + `getConfigField` : gets the confinguration field
+    + `getConfigField` : gets the configuration field
 - DataTable functions:
     + `jsDT` : adds JS scripts to be used with Data Table calls
     + `formatDT` : formats a DataTable
@@ -60,7 +61,7 @@ The package is still in development, functions will be updated.
 
 ### Included Example
 
-The following lines ilustrate how the default shinyXT included example can be run 
+The following lines illustrate how the default shinyXT included example can be run 
 and its output.
 
 ```R
@@ -70,9 +71,9 @@ shinyXT::shinyXTExample()
 ```
 Output:
 
-![Example default view](doc/shinyXT_onetable_view.PNG)
+![Example default view](inst/images/shinyXT_onetable_view.PNG)
 
-![Example default edit](doc/shinyXT_onetable_edit.PNG)
+![Example default edit](inst/images/shinyXT_onetable_edit.PNG)
 
 
 ### createDT Example
@@ -156,9 +157,9 @@ shinyApp(ui, server)
 ```
 Output: 
 
-![Example 1 output](doc/shinyXT_example1.PNG)
+![Example 1 output](inst/images/shinyXT_example1.PNG)
+
 
 ## TODO
-Integrate shinyXT with Shiny Modules
 
-
+- Integrate shinyXT with Shiny Modules
