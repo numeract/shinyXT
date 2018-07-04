@@ -32,7 +32,7 @@ hrXT <- function() {
 #' @param tbl_name Name of the requested table.
 #' 
 #' @return The table from the contexts' table list.
-#' @seealso @seealso \code{\link{getFilteredTbl}}
+#' @seealso \code{\link{getFilteredTbl}}
 #' 
 #' @export
 getFullTbl <- function(.context, tbl_name = .context$tbl_name) {
