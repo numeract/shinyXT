@@ -3,4 +3,4 @@
 # Except files below
 !.gitignore
 !README.md
-!settings_mb.R
+!settings_default.R
