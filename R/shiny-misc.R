@@ -95,10 +95,10 @@ progressInfo <- function(message,
 
 #' Creates a Download Button with Icon
 #' 
-#' Creates a download button or link which when clicked initiates a
-#'  browser download. It allows the user to customize the button by
-#'  adding an icon to it. It has a corresponding \code{downloadHandler}
-#'  in the server function.
+#' Has the same functionality as \code{shiny::downloadButton} but it also 
+#' allows the user to customize the button by adding an icon to it.
+#' It has a corresponding \code{downloadHandler}
+#' in the server function.
 #' 
 #' @param outputId Character, the name of the output slot to which the
 #'   corresponding downloadHandler is assigned.
@@ -107,7 +107,9 @@ progressInfo <- function(message,
 #' @param icon  the icon that appears on the button
 #' @param ... named attributes applied to the button
 #' 
-#' @return An HTML tag object which can be also rendered as HTML 
+#' @return A HTML tag object which can be also rendered as HTML 
+#' 
+#' @seealso \code{\link{shiny::downloadButton}} 
 #' 
 #' @export
 downloadButtonWithIcon <- function(outputId,
