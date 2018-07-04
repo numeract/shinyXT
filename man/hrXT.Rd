@@ -2,7 +2,7 @@
 % Please edit documentation in R/xt-utils.R
 \name{hrXT}
 \alias{hrXT}
-\title{Add an HTML Horizonal Row.}
+\title{Add an HTML Horizontal Row.}
 \usage{
 hrXT()
 }
@@ -10,5 +10,5 @@ hrXT()
 A list with horizontal row settings
 }
 \description{
-Add an HTML Horizonal Row.
+Add an HTML Horizontal Row.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/config.R
 \name{getConfigField}
 \alias{getConfigField}
-\title{Gets the Confinguration Field}
+\title{Gets the Configuration Field}
 \usage{
 getConfigField(tbl, xt, field_name)
 }

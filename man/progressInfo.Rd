@@ -15,20 +15,24 @@ progressInfo(message, detail = "Begin", max = 10L, shiny_session = NULL,
 is in a Shiny session, detail message will be shown with a de-emphasized
 appearance relative to message}
 
-\item{max}{Numeric, value that represents the end of the progress bar,
-in case user is in Shiny mode}
+\item{max}{Numeric, value that represents the end of the progress bar}
 
-\item{shiny_session}{the shiny session object, provided by shinyServer}
+\item{shiny_session}{The shiny session object, provided by shinyServer}
 
 \item{quiet}{Logical, whether or not to display progress info}
 }
 \value{
-A list with progress states
+A list with progress functions to call:
+\item{name inc(detail)}{Increment progress counter} 
+\item{name set(detail = NULL, value = NULL)}{Set progress counter 
+  to \code{value}} 
+\item{name close(detail = "Done")}{Terminate the progress bar. Best if called
+  from \code{on.exit()}.}
 }
 \description{
 Displays progress info taking into account the mode the user is in. If the
   \code{quiet} mode is activated, the function call doesn't display anything.
   If the user is in console mode, the progress information is printed on the
   console. If the function is called in a valid Shiny session,
-  a default progress bar shows progress informaion.
+  a default progress bar shows progress information.
 }

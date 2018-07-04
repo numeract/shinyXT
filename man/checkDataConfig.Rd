@@ -18,7 +18,7 @@ e.g. cat, message, warning, stop}
 \item{...}{Arguments in ... will be passed to if_error()}
 }
 \value{
-Logical. TRUE if XT config contains the nacessary info for tbl
+Logical. TRUE if XT config contains the necessary info for tbl
 }
 \description{
 Checks whether an XT config has
