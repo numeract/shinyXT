@@ -1,8 +1,11 @@
-#' Add an HTML Line Break.
+#' Add a HTML tag
+#' 
+#' Adds a HTML Line Break
 #' 
 #' @return A list with line break settings
 #' 
-#' @family HTML functions
+#' @rdname HTML_functions
+#' 
 #' @export
 brXT <- function() {
     list(
@@ -12,11 +15,14 @@ brXT <- function() {
 }
 
 
-#' Add an HTML Horizontal Row.
+#' Add a HTML tag
+#' 
+#' Adds a HTML horizontal row
 #' 
 #' @return A list with horizontal row settings
 #' 
-#' @family HTML functions
+#' @rdname HTML_functions
+#' 
 #' @export
 hrXT <- function() {
     list(

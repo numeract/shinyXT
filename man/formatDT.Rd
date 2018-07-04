@@ -7,15 +7,16 @@
 formatDT(dt, xt)
 }
 \arguments{
-\item{dt}{A Data Table.}
+\item{dt}{A DT DataTable.}
 
 \item{xt}{Config mode from context.}
 }
 \value{
-the newly formatted DataTable
+the newly formatted DT DataTable
 }
 \description{
-Formats the DT based on the options specified in the configuration.
+Formats the DT Data Table based on the options
+specified in the configuration.
 }
 \examples{
 onetable_df <- data.frame(

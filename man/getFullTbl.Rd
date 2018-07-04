@@ -18,5 +18,5 @@ The table from the contexts' table list.
 Get Entire Table
 }
 \seealso{
-@seealso \code{\link{getFilteredTbl}}
+\code{\link{getFilteredTbl}}
 }

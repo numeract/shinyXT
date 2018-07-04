@@ -15,7 +15,7 @@ getConfigMode(.context, mode = .context$mode)
 A list representing the settings of a specific context mode
 }
 \description{
-Extracts from second level in xt_lst,
+Extracts from second level in \code{xt_lst},
 if it contains only valid modes.
 If any level 2 (only!) field (e.g. validate) is a list of mode fields,
 \code{getConfigMode()} will be used to extract only that mode.

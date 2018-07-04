@@ -9,7 +9,7 @@ downloadButtonWithIcon(outputId, label = "Download", class = NULL,
 }
 \arguments{
 \item{outputId}{Character, the name of the output slot to which the
-corresponding downloadHandler is assigned.}
+corresponding \code{downloadHandler} is assigned.}
 
 \item{label}{the label that appears on the button}
 
@@ -20,11 +20,14 @@ corresponding downloadHandler is assigned.}
 \item{...}{named attributes applied to the button}
 }
 \value{
-An HTML tag object which can be also rendered as HTML
+A HTML tag object which can be also rendered as HTML
 }
 \description{
-Creates a download button or link which when clicked initiates a
- browser download. It allows the user to customize the button by
- adding an icon to it. It has a corresponding \code{downloadHandler}
- in the server function.
+Has the same functionality as \code{shiny::downloadButton} but it also 
+allows the user to customize the button by adding an icon to it.
+It has a corresponding \code{downloadHandler}
+in the server function.
+}
+\seealso{
+\code{\link{shiny::downloadButton}}
 }

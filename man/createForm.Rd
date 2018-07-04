@@ -10,11 +10,11 @@ createForm(.context)
 \item{.context}{List. The shinyXT context.}
 }
 \value{
-An HTML tag object.
+A list of Shiny views.
 }
 \description{
 Creates the form that allows the addition of a new record to the table,
-  based on the context settings.
+based on the context settings.
 }
 \seealso{
 Other form functions: \code{\link{validateForm}}

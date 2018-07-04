@@ -10,10 +10,10 @@ createDT(.context)
 \item{.context}{List. The shinyXT context.}
 }
 \value{
-A DataTable
+A DT DataTable
 }
 \description{
-Creates a DT based on the settings specified in the context.
+Creates a DT DataTable based on the settings specified in the context.
 }
 \examples{
 onetable_df <- data.frame(

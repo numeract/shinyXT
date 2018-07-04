@@ -7,8 +7,8 @@
 getConfigField(tbl, xt, field_name)
 }
 \arguments{
-\item{tbl}{Data table (data frame) containing the actual data the shiny app
-works with}
+\item{tbl}{DT DataTable (data frame) containing the actual data the
+shiny app works with}
 
 \item{xt}{A list representing the settings of a specific context mode}
 

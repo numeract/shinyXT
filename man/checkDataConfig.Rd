@@ -7,7 +7,7 @@
 checkDataConfig(tbl, xt, if_error = stop, ...)
 }
 \arguments{
-\item{tbl}{Data table (data frame) containing the actual data the shiny app
+\item{tbl}{DT DataTable (data frame) containing the actual data the shiny app
 works with}
 
 \item{xt}{A list representing the settings of a specific context mode}
@@ -22,7 +22,7 @@ Logical. TRUE if XT config contains the necessary info for tbl
 }
 \description{
 Checks whether an XT config has
-enough column info for a data table (data frame)
+enough column info for a DT DataTable(data frame)
 }
 \seealso{
 Other config functions: \code{\link{getConfigField}},
