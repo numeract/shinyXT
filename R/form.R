@@ -5,7 +5,7 @@
 #' 
 #' @param .context List. The shinyXT context.
 #' 
-#' @return An HTML tag object.
+#' @return A list of Shiny views.
 #' @family form functions
 #' 
 #' @export
