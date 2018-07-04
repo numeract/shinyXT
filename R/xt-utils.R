@@ -11,7 +11,7 @@ brXT <- function() {
 }
 
 
-#' Add an HTML Horizonal Row.
+#' Add an HTML Horizontal Row.
 #' 
 #' @return A list with horizontal row settings
 #' 

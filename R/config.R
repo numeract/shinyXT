@@ -83,7 +83,7 @@ getConfigMode <- function(.context, mode = .context$mode) {
 #' e.g. cat, message, warning, stop
 #' @param ... Arguments in ... will be passed to if_error()
 #' 
-#' @return Logical. TRUE if XT config contains the nacessary info for tbl
+#' @return Logical. TRUE if XT config contains the necessary info for tbl
 #' 
 #' @family config functions
 #' 
@@ -108,7 +108,7 @@ checkDataConfig <- function(tbl, xt, if_error = stop, ...) {
     }
 }
 
-#' Gets the Confinguration Field
+#' Gets the Configuration Field
 #' 
 #' Returns values from an xt field in the order of the \code{tbl} columns
 #' 

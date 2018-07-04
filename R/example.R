@@ -1,9 +1,10 @@
 # based on https://deanattali.com/2015/04/21/r-package-shiny-app/
 
-#' Create and run a shinyXT example
+#' Runs shinyXT examples included with the package
 #' 
-#' Builds and runs the specified shinyXT example, based on the configuration
-#'  files found in the same folder.
+#' Runs the specified shinyXT example within a shiny app, 
+#'  based on the configuration files found in the same folder 
+#'  (see folder \code{examples/}).
 #' 
 #' @param example_name String that represents name of the example.
 #' 

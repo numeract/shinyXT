@@ -4,7 +4,7 @@
 # lang ----
 qval <- function(x, default = NULL, envir = parent.frame()) {
     
-    # see ?mode (abot same as class); do not accept `(`
+    # see ?mode (about same as class); do not accept `(`
     val <- if (class(x)[1L] %in% c("call", "name")) {
         tryCatch({
             eval(x, envir = envir)
