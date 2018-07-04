@@ -20,7 +20,7 @@ jsDT <- function(script_name = c("4col")) {
 #' 
 #' Formats the DT based on the options specified in the configuration.
 #' 
-#' @param dt A Data Table.
+#' @param dt A DT DataTable.
 #' @param xt Config mode from context.
 #' 
 #' @seealso \code{\link{createDT}}
@@ -171,11 +171,11 @@ formatDT <- function(dt, xt) {
 
 #' Create a Data Table.
 #' 
-#' Creates a DT based on the settings specified in the context.
+#' Creates a DT DataTable based on the settings specified in the context.
 #' 
 #' @param .context List. The shinyXT context.
 #' 
-#' @return A DataTable  
+#' @return A DT DataTable  
 #' @seealso \code{\link{formatDT}}
 #' 
 #' @examples 

@@ -74,9 +74,9 @@ getConfigMode <- function(.context, mode = .context$mode) {
 #' Check XT Configuration Columns
 #' 
 #' Checks whether an XT config has
-#' enough column info for a data table (data frame)
+#' enough column info for a DT DataTable(data frame)
 #' 
-#' @param tbl Data table (data frame) containing the actual data the shiny app
+#' @param tbl DT DataTable (data frame) containing the actual data the shiny app
 #' works with
 #' @param xt A list representing the settings of a specific context mode
 #' @param if_error  Function that accepts a message
@@ -112,8 +112,8 @@ checkDataConfig <- function(tbl, xt, if_error = stop, ...) {
 #' 
 #' Returns values from an xt field in the order of the \code{tbl} columns
 #' 
-#' @param tbl Data table (data frame) containing the actual data the shiny app
-#'  works with
+#' @param tbl DT DataTable (data frame) containing the actual data the
+#'  shiny app works with
 #' @param xt A list representing the settings of a specific context mode
 #' 
 #' @param field_name A character representing the config field
