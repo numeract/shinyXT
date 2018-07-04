@@ -101,7 +101,7 @@ progressInfo <- function(message,
 #' in the server function.
 #' 
 #' @param outputId Character, the name of the output slot to which the
-#'   corresponding downloadHandler is assigned.
+#'   corresponding \code{downloadHandler} is assigned.
 #' @param label the label that appears on the button
 #' @param class additional CSS classes
 #' @param icon  the icon that appears on the button

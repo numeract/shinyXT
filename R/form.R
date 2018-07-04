@@ -1,11 +1,12 @@
 #' Create New Record Form
 #'
 #' Creates the form that allows the addition of a new record to the table,
-#'   based on the context settings.
+#' based on the context settings.
 #' 
 #' @param .context List. The shinyXT context.
 #' 
 #' @return A list of Shiny views.
+#' 
 #' @family form functions
 #' 
 #' @export
@@ -37,7 +38,7 @@ createForm <- function(.context) {
         # extract widget call
         if (is.list(xtc$widget)) {
             what <- xtc$widget[[1L]]
-            argm <- xtc$widget[-1L]     # keep any other arg as list
+            argm <- xtc$widget[-1L] # keep any other arg as list
         } else {
             what <- xtc$widget
             argm <- list()

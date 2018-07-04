@@ -18,14 +18,15 @@ jsDT <- function(script_name = c("4col")) {
 
 #' Format a Data Table.
 #' 
-#' Formats the DT based on the options specified in the configuration.
+#' Formats the DT Data Table based on the options
+#' specified in the configuration.
 #' 
 #' @param dt A DT DataTable.
 #' @param xt Config mode from context.
 #' 
 #' @seealso \code{\link{createDT}}
 #'  
-#' @return  the newly formatted DataTable
+#' @return  the newly formatted DT DataTable
 #' @examples
 #' onetable_df <- data.frame(
 #'     a0_num = c(1, 2, 3, 4)
