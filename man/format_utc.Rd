@@ -22,7 +22,7 @@ A character string representing the formatted date.
 Converts Date and POSIXct objects to the format given as input.
 }
 \examples{
-format_utc(Sys.time(), format = "\%Y-\%m-\%d", usetz = FALSE)
+format_utc(Sys.time(), usetz = FALSE)
 
 }
 \seealso{

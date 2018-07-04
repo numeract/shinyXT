@@ -12,3 +12,7 @@ A list with line break settings
 \description{
 Add an HTML Line Break.
 }
+\seealso{
+Other HTML functions: \code{\link{hrXT}}
+}
+\concept{HTML functions}

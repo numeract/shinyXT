@@ -2,6 +2,7 @@
 #' 
 #' @return A list with line break settings
 #' 
+#' @family HTML functions
 #' @export
 brXT <- function() {
     list(
@@ -15,6 +16,7 @@ brXT <- function() {
 #' 
 #' @return A list with horizontal row settings
 #' 
+#' @family HTML functions
 #' @export
 hrXT <- function() {
     list(

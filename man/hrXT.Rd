@@ -12,3 +12,7 @@ A list with horizontal row settings
 \description{
 Add an HTML Horizontal Row.
 }
+\seealso{
+Other HTML functions: \code{\link{brXT}}
+}
+\concept{HTML functions}
