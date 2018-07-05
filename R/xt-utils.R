@@ -138,9 +138,9 @@ choices <- function(var_col,
 }
 
 
-#' Check for Empty Character
+#' Check for NOT Empty Character
 #' 
-#' Checks if input is NOT empty character.
+#' Checks if input length is at least 1 and is not NA or empty string.
 #' 
 #' @param x Input to be checked.
 #' 
