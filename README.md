@@ -18,8 +18,8 @@ multiple DataTable objects (e.g. two tables linked using a foreign key.)
 The main advantages of using shinyXT for creating and formatting DT DataTable:
 
 - Flexibility: if the user wants to change a feature of the DataTable objects, 
-is enough to modify the settings and the change will be propagated in all 
-DataTable objects that are created with the same settings
+  is enough to modify the settings and the change will be propagated in all 
+  DataTable objects that are created with the same settings
 - Greater control achieved by using a standard template
 - The server code becomes much shorter
 
