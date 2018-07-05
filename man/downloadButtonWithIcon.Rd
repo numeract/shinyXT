@@ -29,5 +29,5 @@ It has a corresponding \code{downloadHandler}
 in the server function.
 }
 \seealso{
-\code{\link{shiny::downloadButton}}
+\code{\link[shiny]{downloadButton}}
 }

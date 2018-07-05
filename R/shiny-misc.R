@@ -109,7 +109,7 @@ progressInfo <- function(message,
 #' 
 #' @return A HTML tag object which can be also rendered as HTML 
 #' 
-#' @seealso \code{\link{shiny::downloadButton}} 
+#' @seealso \code{\link[shiny]{downloadButton}} 
 #' 
 #' @export
 downloadButtonWithIcon <- function(outputId,
