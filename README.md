@@ -8,19 +8,19 @@ changes while the API stabilizes.**
 
 ## Motivation
 
-The package allows the configuration and formatting of Shiny DataTable and Form 
-templates that are meant to be re-used, as well as other Shiny functionalities.
-The functions that receive custom settings and use them in order to create DataTable templates 
-work like a Factory design pattern. The table is constructed without exposing the creation logic each time the template 
-is applied and a common interface (context) can be used in order to render multiple DataTable objects.
+The package allows the configuration and formatting of Shiny DT DataTables and 
+form templates that are meant to be re-used, as well as other Shiny 
+functionalities. The functions receive custom settings and use them to create 
+DT DataTable templates - work like a Factory design pattern. 
+A common configuration interface (`context`) can be used to render 
+multiple DataTable objects (e.g. two tables linked using a foreign key.)
 
-The main advantages of using shinyXT for creating and formatting DataTable objects are:
+The main advantages of using shinyXT for creating and formatting DT DataTable:
 
-- Flexibility: if the user wants to change a feature of the DataTable objects, is enough to modify the settings
-and the change will be propagated in all DataTable objects that are created with the same settings
-
-- Greater control achieved by using a standard format
-
+- Flexibility: if the user wants to change a feature of the DataTable objects, 
+is enough to modify the settings and the change will be propagated in all 
+DataTable objects that are created with the same settings
+- Greater control achieved by using a standard template
 - The server code becomes much shorter
 
 
@@ -32,8 +32,6 @@ devtools::install_github("numeract/shinyXT")
 ```
 
 ## Functions
-
-The package is still in development, functions will be updated.
 
 - Configuration mode :
     + `getConfigMode` : extracts configuration mode from a context
@@ -47,7 +45,7 @@ The package is still in development, functions will be updated.
     + `createForm`
     + `validateForm`
 - `Shiny` customized views:
-    + `progressInfo` : displays progress info taking into account the mode the user is in
+    + `progressInfo` : displays a progress info bar that works in console or in Shiny
     + `downloadButtonWithIcon` : creates a download button with icon
 - `ShinyXT` utils:
     + `brXT` and `hrXT`
@@ -61,8 +59,8 @@ The package is still in development, functions will be updated.
 
 ### Included Example
 
-The following lines illustrate how the default shinyXT included example can be run 
-and its output.
+The following lines illustrate how the default shinyXT included example can be 
+run and its output.
 
 ```R
 library(shinyXT)
@@ -78,8 +76,8 @@ Output:
 
 ### createDT Example
 
-The following example shows the utility of `createDT` function and the way a context containing custom settings 
-is created and passed to it.
+The following example shows the utility of `createDT` function and the way 
+a context containing custom settings is created and passed to it.
 
 ```R
 library(shiny)
@@ -163,3 +161,4 @@ Output:
 ## TODO
 
 - Integrate shinyXT with Shiny Modules
+- Cascade filter module
