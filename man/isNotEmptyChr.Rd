@@ -2,7 +2,7 @@
 % Please edit documentation in R/xt-utils.R
 \name{isNotEmptyChr}
 \alias{isNotEmptyChr}
-\title{Check for Empty Character}
+\title{Check for NOT Empty Character}
 \usage{
 isNotEmptyChr(x)
 }
@@ -13,5 +13,5 @@ isNotEmptyChr(x)
 Logical: TRUE if NOT empty character and FALSE otherwise
 }
 \description{
-Checks if input is NOT empty character.
+Checks if input length is at least 1 and is not NA or empty string.
 }
