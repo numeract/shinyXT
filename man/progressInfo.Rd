@@ -4,8 +4,8 @@
 \alias{progressInfo}
 \title{Displays the Progress Info}
 \usage{
-progressInfo(message, detail = "Begin", max = 10L, shiny_session = NULL,
-  quiet = FALSE)
+progressInfo(message, detail = "Begin", max = 10L,
+  shiny_session = NULL, quiet = FALSE)
 }
 \arguments{
 \item{message}{Character, the message to be displayed to the user.
