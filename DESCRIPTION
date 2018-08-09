@@ -33,4 +33,7 @@ Suggests:
     lubridate,
     shinytest,
     testthat,
-    covr
+    covr,
+    shinytest
+Remotes:
+    rstudio/shinytest
