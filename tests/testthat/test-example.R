@@ -6,6 +6,8 @@ test_that("shinyXTExample() works", {
     
     # Use compareImages=FALSE in order to avoid conflicts between test
     # screenshots made on different operating systems
-   # shinytest::expect_pass(
-    #    shinytest::testApp("R/example/", compareImages = FALSE))
+    shinytest::expect_pass(
+       shinytest::testApp(
+           "inst/examples/template/", 
+           compareImages = FALSE))
 })
